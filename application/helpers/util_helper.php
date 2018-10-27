@@ -975,7 +975,7 @@ if (!function_exists('check_permission')) {
         $role_id = $ci->session->userdata('role_id');
         $operation_slug = $ci->router->fetch_class();
         $module_slug = $ci->router->fetch_module();
-
+        
         if ($module_slug == '') {
             $module_slug = $operation_slug;
         }

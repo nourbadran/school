@@ -101,4 +101,4 @@ $db['default'] = array(
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
 $db['default']['password'] = "";
-$db['default']['database'] = "school-3235e4bb";
+$db['default']['database'] = "school";

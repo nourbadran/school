@@ -555,3 +555,4 @@ $lang['check_at_least_one'] = "Please check at least one checkbox";
 $lang['manage_school'] = "Manage School";
 $lang['purchase_code'] = "Purchase Code";
 $lang['enter_purchase_code'] = "Enter Purchase Code";
+$lang['stage'] = "Stage";

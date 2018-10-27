@@ -116,6 +116,10 @@
                             </li> 
                         <?php } ?> 
                     <?php } ?>
+
+                    <?php if(has_permission(VIEW, 'academic', 'stage')){ ?>
+                        <li><a href="<?php echo site_url('academic/stage/index'); ?>"><i class="fa fa-slideshare"></i> <?php echo $this->lang->line('stage'); ?></a> </li> 
+                    <?php } ?>
                     
                     <?php if(has_permission(VIEW, 'academic', 'subject')){ ?>
                             

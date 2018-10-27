@@ -63,6 +63,7 @@
                                         <?php } ?>
                                         <th><?php echo $this->lang->line('section'); ?> <?php echo $this->lang->line('name'); ?></th>
                                         <th><?php echo $this->lang->line('class'); ?></th>
+                                        <th><?php echo $this->lang->line('type'); ?></th>
                                         <th><?php echo $this->lang->line('teacher'); ?></th>
                                         <th><?php echo $this->lang->line('note'); ?></th>
                                         <th><?php echo $this->lang->line('action'); ?></th>                                            
@@ -78,6 +79,7 @@
                                             <?php } ?>
                                             <td><?php echo $obj->name; ?></td>
                                             <td><?php echo $obj->class_name; ?></td>
+                                            <td><?php echo $obj->type; ?></td>
                                             <td><?php echo $obj->teacher; ?></td>
                                             <td><?php echo $obj->note; ?></td>
                                             <td>
@@ -121,6 +123,21 @@
                                             <?php foreach($classes as $obj ){ ?>
                                             <option value="<?php echo $obj->id; ?>" <?php echo isset($post['class_id']) && $post['class_id'] == $obj->id ?  'selected="selected"' : ''; ?>><?php echo $obj->name; ?></option>
                                             <?php } ?>                                            
+                                        </select>
+                                        <div class="help-block"><?php echo form_error('class_id'); ?></div>
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class_id"><?php echo $this->lang->line('type'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control col-md-7 col-xs-12 select2"  name="type"  id="add_type" required="required" >
+                                            <option value="">--<?php echo $this->lang->line('type'); ?>--</option> 
+                                            
+                                            <option value="arabic" >Arabic</option>
+                                            <option value="cambridge" >Cambridge</option>
+                                                                                        
                                         </select>
                                         <div class="help-block"><?php echo form_error('class_id'); ?></div>
                                     </div>
