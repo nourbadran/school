@@ -1,5 +1,18 @@
+#root directory
 /assets
 /documentation
 /system
 /.htaccess
 /index.php
+
+#application directory
+/application/cache
+/application/config
+/application/core
+/application/helpers
+/application/hooks
+/application/libraries
+/application/logs
+/application/third_party
+/application/.htaccess
+/application/index.html
