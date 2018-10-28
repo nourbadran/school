@@ -11,11 +11,11 @@ class Classes_Model extends MY_Model {
     
      public function get_class_list(){
         
-        $this->db->select('C.*, S.school_name, T.name AS teacher');
+        $this->db->select('C.*, S.school_name, T.name AS teacher,D.name AS department');
         $this->db->from('classes AS C');
         $this->db->join('teachers AS T', 'T.id = C.teacher_id', 'left');
         $this->db->join('schools AS S', 'S.id = C.school_id', 'left');
-        
+         $this->db->join('departments AS D', 'D.id = C.department_id', 'left');
         if($this->session->userdata('role_id') != SUPER_ADMIN){
             $this->db->where('C.school_id', $this->session->userdata('school_id'));
         }

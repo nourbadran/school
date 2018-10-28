@@ -39,12 +39,13 @@ class Classes extends MY_Controller {
         $this->data['classes'] = $this->classes->get_class_list();  
         
         $condition = array();
+         $this->data['departments'] = $this->classes->get_list('departments', $condition, '','', '', 'id', 'ASC');
         $condition['status'] = 1;        
         if($this->session->userdata('role_id') != SUPER_ADMIN){            
             $condition['school_id'] = $this->session->userdata('school_id');        
             $this->data['teachers'] = $this->classes->get_list('teachers', $condition, '','', '', 'id', 'ASC');
         }        
-        
+       
         $this->data['list'] = TRUE;
         $this->layout->title($this->lang->line('manage_class'). ' | ' . SMS);
         $this->layout->view('class/index', $this->data);            
@@ -86,6 +87,7 @@ class Classes extends MY_Controller {
         $this->data['classes'] = $this->classes->get_class_list();      
         
         $condition = array();
+        $this->data['departments'] = $this->classes->get_list('departments', $condition, '','', '', 'id', 'ASC');
         $condition['status'] = 1;        
         if($this->session->userdata('role_id') != SUPER_ADMIN){            
             $condition['school_id'] = $this->session->userdata('school_id');        
@@ -144,6 +146,7 @@ class Classes extends MY_Controller {
         $this->data['classes'] = $this->classes->get_class_list();   
         
         $condition = array();
+        $this->data['departments'] = $this->classes->get_list('departments', $condition, '','', '', 'id', 'ASC');
         $condition['status'] = 1;        
         if($this->session->userdata('role_id') != SUPER_ADMIN){            
             $condition['school_id'] = $this->session->userdata('school_id');        
@@ -170,6 +173,7 @@ class Classes extends MY_Controller {
         
         $this->form_validation->set_rules('school_id', $this->lang->line('school'), 'trim|required');   
         $this->form_validation->set_rules('teacher_id', $this->lang->line('teacher'), 'trim|required');   
+        $this->form_validation->set_rules('department_id', $this->lang->line('teacher'), 'trim|required');   
         $this->form_validation->set_rules('numeric_name', $this->lang->line('numeric_name'), 'trim|required');     
         $this->form_validation->set_rules('name', $this->lang->line('name'), 'trim|required|callback_name');
         $this->form_validation->set_rules('monthly_tution_fee', $this->lang->line('monthly_tution_fee'), 'trim|required');     
@@ -223,7 +227,9 @@ class Classes extends MY_Controller {
         $items = array();
         $items[] = 'school_id';
         $items[] = 'teacher_id';
+        $items[] = 'department_id';
         $items[] = 'name';
+         $items[] = 'type';
         $items[] = 'numeric_name';
         $items[] = 'monthly_tution_fee';
         $items[] = 'admission_fee';

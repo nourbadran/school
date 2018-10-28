@@ -94,6 +94,10 @@
                     <?php if(has_permission(VIEW, 'teacher', 'teacher')){ ?>
                         <li><a href="<?php echo site_url('teacher'); ?>"><i class="fa fa-users"></i> <?php echo $this->lang->line('teacher'); ?></a> </li>  
                     <?php } ?>
+
+                    <?php if(has_permission(VIEW, 'academic', 'department')){ ?>
+                        <li><a href="<?php echo site_url('academic/department/index'); ?>"><i class="fa fa-slideshare"></i> <?php echo $this->lang->line('department'); ?></a> </li> 
+                    <?php } ?>
                     
                     <?php if(has_permission(VIEW, 'academic', 'classes')){ ?>
                         <li><a href="<?php echo site_url('academic/classes/index'); ?>"><i class="fa fa-slideshare"></i> <?php echo $this->lang->line('class'); ?></a> </li> 
@@ -117,9 +121,7 @@
                         <?php } ?> 
                     <?php } ?>
 
-                    <?php if(has_permission(VIEW, 'academic', 'stage')){ ?>
-                        <li><a href="<?php echo site_url('academic/stage/index'); ?>"><i class="fa fa-slideshare"></i> <?php echo $this->lang->line('stage'); ?></a> </li> 
-                    <?php } ?>
+                   
                     
                     <?php if(has_permission(VIEW, 'academic', 'subject')){ ?>
                             

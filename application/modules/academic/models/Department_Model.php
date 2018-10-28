@@ -3,34 +3,25 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Stage_Model extends MY_Model {
+class Department_Model extends MY_Model {
     
     function __construct() {
         parent::__construct();
     }
     
-     public function get_stage_list(){
-        
-       
-        $class_id = $this->session->userdata('class_id');
+     public function get_department_list(){
         
         
-        $this->db->select('S.*, SC.name section_name');
-        $this->db->from('stages AS S');
+        $this->db->select('d.*');
+        $this->db->from('departments AS d');
         
-        $this->db->join('sections AS SC', 'SC.id = S.section_id', 'left');
-        
-        
-        if($class_id > 0){
-            $this->db->where('SC.class_id', $class_id); 
-        } 
         
         
         if($this->session->userdata('role_id') != SUPER_ADMIN){
-            $this->db->where('SC.school_id', $this->session->userdata('school_id'));
+            $this->db->where('d.school_id', $this->session->userdata('school_id'));
         }
         
-        $this->db->order_by('SC.class_id', 'ASC');
+        $this->db->order_by('d.school_id', 'ASC');
         
         return $this->db->get()->result();
         

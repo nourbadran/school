@@ -256,7 +256,7 @@ class Section extends MY_Controller {
         $items[] = 'school_id';
         $items[] = 'class_id';
         $items[] = 'teacher_id';
-        $items[] = 'type';
+    
         $items[] = 'name';
         $data = elements($items, $_POST);        
         $data['note'] = $this->input->post('note');
