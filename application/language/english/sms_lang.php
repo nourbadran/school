@@ -562,3 +562,5 @@ $lang['manage_department'] = "Manage Departments";
 $lang['manage departments'] = "Manage Stages";
 $lang['department'] = "Departments";
 $lang['_department'] = "Department";
+$lang['supervisor'] = "Supervisor";
+$lang['manage_supervisor'] = "Mange Supervisor";

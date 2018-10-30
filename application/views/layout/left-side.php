@@ -182,6 +182,13 @@
                     <?php if(has_permission(VIEW, 'guardian', 'guardian')){ ?>    
                         <li><a href="<?php echo site_url('guardian/index/'); ?>"><i class="fa fa-paw"></i> <?php echo $this->lang->line('guardian'); ?></a> </li>
                     <?php } ?>
+
+                    <?php if(has_permission(VIEW, 'supervisor', 'supervisor')){ ?>
+                        
+                            <li><a  href="<?php echo site_url('supervisor/index/'); ?>"><i class="fa fa-users"></i> <?php echo $this->lang->line('supervisor'); ?> </a></li>
+                    
+                    <?php } ?>
+
                     
                     <?php if(has_permission(VIEW, 'student', 'student') || has_permission(ADD, 'student', 'student')){ ?> 
                         

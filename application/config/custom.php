@@ -777,3 +777,4 @@ $config['my_academic']['stage']['2'] = '1|1|1|1';
 $config['my_administrator']['payment']['2'] = '0|0|0|0';
 $config['my_administrator']['sms']['2'] = '0|0|0|0';
 $config['my_academic']['department']['2'] = '1|1|1|1';
+$config['my_supervisor']['supervisor']['2'] = '1|1|1|1';
