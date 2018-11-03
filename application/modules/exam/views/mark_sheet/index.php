@@ -124,7 +124,12 @@
                             <th><?php echo $this->lang->line('mark_obtain'); ?></th>                                            
                             <th><?php echo $this->lang->line('exam_grade'); ?></th>                                            
                             <th><?php echo $this->lang->line('grade_point'); ?></th>                                            
-                            <th><?php echo $this->lang->line('remark'); ?></th>                                            
+                            <th><?php echo $this->lang->line('remark'); ?></th>      
+                            <?php
+                                 if($this->session->userdata('role_id') == SUPERVISOR ){ 
+                             ?>      
+                             <th><?php echo $this->lang->line('confirm'); ?></th>    
+                             <?php }?>                                
                         </tr>
                     </thead>
                     <tbody id="fn_mark">   
@@ -140,7 +145,12 @@
                                     <td><?php echo $obj->obtain_mark; ?></td>
                                     <td><?php echo $obj->name; ?></td>
                                     <td><?php echo $obj->point; ?></td>                               
-                                    <td><?php echo $obj->remark; ?></td>                               
+                                    <td><?php echo $obj->remark; ?></td>    
+                                    <?php
+                                        if($this->session->userdata('role_id') == SUPERVISOR && $obj->is_confirmed == 0 ){ 
+                                     ?>      
+                                     <td><button id="confirm-btn" onclick="confirm(this)" data="<?php echo $obj->id ?>" class="btn btn-success">Confirm</button></td>    
+                                     <?php }?>                              
                                 </tr>
                             <?php } ?>
                         <?php }else{ ?>
@@ -158,6 +168,29 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    $(function () {
+    confirm = function (elm) {
+        
+            var mark_id = $(elm).attr('data');
+            $.ajax({       
+                    type   : "POST",
+                    url    : "<?php echo site_url('marksheet/confirm'); ?>",
+                    data   : {  mark_id : mark_id},               
+                    async  : false,
+                    success: function(response){                                                   
+                       if(response)
+                       {
+                            toastr.success('Data updated successfully'); 
+                            $(elm).hide();
+                       }
+                    }
+                });
+            };
+        });
+        
+       
+  </script>
  
 <!-- Super admin js START  -->
  <script type="text/javascript">

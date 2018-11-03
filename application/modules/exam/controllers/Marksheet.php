@@ -72,7 +72,15 @@ class Marksheet extends MY_Controller {
         $condition['status'] = 1;        
         if($this->session->userdata('role_id') != SUPER_ADMIN){ 
             $condition['school_id'] = $this->session->userdata('school_id');
-            $this->data['classes'] = $this->mark->get_list('classes', $condition, '','', '', 'id', 'ASC');
+            if ($this->session->userdata('role_id') == SUPERVISOR) {
+                $my_supervisor = $this->mark->get_list('supervisors', array('user_id'=> $this->session->userdata('id')), '', '', '', 'id', 'ASC');
+                if ($my_supervisor) {
+    
+                    $this->data['classes'] = $this->mark->get_list('classes', array('supervisor_id'=>$my_supervisor[0]->id), '', '', '', 'id', 'ASC');
+                }
+            }
+            else
+                $this->data['classes'] = $this->mark->get_list('classes', $condition, '','', '', 'id', 'ASC');
             $condition['academic_year_id'] = $this->academic_year_id;
             $this->data['exams'] = $this->mark->get_list('exams', $condition, '', '', '', 'id', 'ASC');
         } 
@@ -80,6 +88,14 @@ class Marksheet extends MY_Controller {
 
         $this->layout->title($this->lang->line('student') . ' ' . $this->lang->line('mark_sheet') . ' | ' . SMS);
         $this->layout->view('mark_sheet/index', $this->data);
+    }
+
+    public function confirm() {
+        $mark_id = $this->input->post('mark_id');
+        $exam = $this->mark->get_single('marks',array('id'=>$mark_id),NULL);
+        $exam->is_confirmed = 1;
+        $exam->save();
+        return true;
     }
 
 }
