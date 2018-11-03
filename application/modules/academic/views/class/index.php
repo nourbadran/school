@@ -41,6 +41,7 @@
                                         <th><?php echo $this->lang->line('numeric'); ?> <?php echo $this->lang->line('name'); ?></th>
                                         <th><?php echo $this->lang->line('type'); ?></th>
                                         <th><?php echo $this->lang->line('teacher'); ?></th>
+                                        <th><?php echo $this->lang->line('supervisor'); ?></th>
                                         <th><?php echo $this->lang->line('_department'); ?></th>
                                         <th><?php echo $this->lang->line('monthly_fee'); ?></th>
                                         <th><?php echo $this->lang->line('admission_fee'); ?></th>
@@ -61,6 +62,7 @@
                                             <td><?php echo $obj->numeric_name; ?></td>
                                             <td><?php echo $obj->type; ?></td>
                                             <td><?php echo $obj->teacher; ?></td>
+                                            <td><?php echo $obj->supervisor; ?></td>
                                             <td><?php echo $obj->department; ?></td>
                                             <td><?php echo $obj->monthly_tution_fee; ?></td>
                                             <td><?php echo $obj->admission_fee; ?></td>
@@ -116,6 +118,19 @@
                                                                                         
                                         </select>
                                         <div class="help-block"><?php echo form_error('class_id'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor_id"><?php echo $this->lang->line('supervisor'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control col-md-7 col-xs-12"  name="supervisor_id"  id="add_teacher_id" required="required" >
+                                            <option value="">--<?php echo $this->lang->line('select'); ?>--</option> 
+                                            <?php foreach($supervisors as $obj ){ ?>
+                                            <option value="<?php echo $obj->id; ?>" <?php echo isset($post['supervisor_id']) && $post['supervisor_id'] == $obj->id ?  'selected="selected"' : ''; ?>><?php echo $obj->name; ?></option>
+                                            <?php } ?>                                            
+                                        </select>
+                                        <div class="help-block"><?php echo form_error('supervisor_id'); ?></div>
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -251,6 +266,19 @@
                                             <?php } ?>                                            
                                         </select>
                                         <div class="help-block"><?php echo form_error('teacher_id'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supervisor_id"><?php echo $this->lang->line('supervisor'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control col-md-7 col-xs-12"  name="supervisor_id"  id="add_teacher_id" required="required" >
+                                            <option value="">--<?php echo $this->lang->line('select'); ?>--</option> 
+                                            <?php foreach($supervisors as $obj ){ ?>
+                                            <option value="<?php echo $obj->id; ?>" <?php echo isset($post['supervisor_id']) && $post['supervisor_id'] == $obj->id ?  'selected="selected"' : ''; ?>><?php echo $obj->name; ?></option>
+                                            <?php } ?>                                            
+                                        </select>
+                                        <div class="help-block"><?php echo form_error('supervisor_id'); ?></div>
                                     </div>
                                 </div>
                                  <div class="item form-group">

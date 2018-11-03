@@ -52,6 +52,7 @@ class Student extends MY_Controller {
         $this->data['students'] = $this->student->get_student_list($class_id, $school_id);
         $this->data['roles'] = $this->student->get_list('roles', array('status' => 1), '', '', '', 'id', 'ASC');
         
+        
         $condition = array();
         $condition['status'] = 1;        
         if($this->session->userdata('role_id') != SUPER_ADMIN){            

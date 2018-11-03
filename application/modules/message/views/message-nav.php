@@ -28,6 +28,13 @@
                     <span class="label label-danger pull-right"><?php echo count($trashs); ?></span>
                 </a>
             </li>
+            <?php if ($this->session->userdata('role_id') == SUPERVISOR){ ?>
+              <li class="<?php if(isset($view_supervisor_mesage)){ echo 'nav-active';} ?>">
+                <a href="<?php echo site_url('message/supervisor'); ?>"><i class="fa fa-envelope-o"></i> <?php echo $this->lang->line('messages'); ?>
+                    <span class="label label-danger pull-right"><?php echo count($messages); ?></span>
+                </a>
+            </li>
+            <?php } ?>
         </ul>
     </div>
 </div> 

@@ -82,7 +82,11 @@ class Auth extends CI_Controller {
                     $profile = $this->auth->get_single('guardians', array('user_id' => $login->id));
                 } elseif ($login->role_id == TEACHER) {
                     $profile = $this->auth->get_single('teachers', array('user_id' => $login->id));
-                } else {
+                }
+                elseif ($login->role_id == SUPERVISOR) {
+                    $profile = $this->auth->get_single('supervisors', array('user_id' => $login->id));
+                } 
+                else {
                     $profile = $this->auth->get_single('employees', array('user_id' => $login->id));
                 }               
               

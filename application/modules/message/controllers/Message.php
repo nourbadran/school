@@ -44,6 +44,7 @@ class Message extends MY_Controller {
         $this->data['inbox'] = TRUE;
         $this->data['list'] = TRUE;
         $this->layout->title($this->lang->line('inbox') . ' ' . $this->lang->line('message') . ' | ' . SMS);
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
         $this->layout->view('message/inbox', $this->data);
     }
 
@@ -61,6 +62,7 @@ class Message extends MY_Controller {
         check_permission(VIEW);
 
         $this->data['sent'] = TRUE;
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
         $this->layout->title($this->lang->line('send') . ' ' . $this->lang->line('message') . ' | ' . SMS);
         $this->layout->view('message/sent', $this->data);
     }
@@ -79,6 +81,7 @@ class Message extends MY_Controller {
         check_permission(VIEW);
 
         $this->data['draft'] = TRUE;
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
         $this->layout->title($this->lang->line('draft') . ' ' . $this->lang->line('message') . ' | ' . SMS);
         $this->layout->view('message/draft', $this->data);
     }
@@ -97,8 +100,27 @@ class Message extends MY_Controller {
         check_permission(VIEW);
 
         $this->data['trash'] = TRUE;
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
         $this->layout->title($this->lang->line('trash') . ' ' . $this->lang->line('message') . ' | ' . SMS);
         $this->layout->view('message/trash', $this->data);
+    }
+
+    /*****************Function Supervisor**********************************
+    * @type            : Function
+    * @function name   : trash
+    * @description     : Load "Supervisor Message List" user interface                 
+    *                    
+    * @param           : null
+    * @return          : null 
+    * ********************************************************** */
+    public function supervisor() {
+
+        check_permission(VIEW);
+
+        $this->data['supervisor'] = TRUE;
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
+        $this->layout->title($this->lang->line('supervisor') . ' ' . $this->lang->line('message') . ' | ' . SMS);
+        $this->layout->view('message/supervisor', $this->data);
     }
 
     
@@ -201,12 +223,21 @@ class Message extends MY_Controller {
         $condition = array();
         $condition['status'] = 1;        
         if($this->session->userdata('role_id') != SUPER_ADMIN){            
-            $condition['school_id'] = $this->session->userdata('school_id');        
-            $this->data['classes'] = $this->message->get_list('classes', $condition, '', '', '', 'id', 'ASC');
+            $condition['school_id'] = $this->session->userdata('school_id');     
+            if($this->session->userdata('role_id') != SUPERVISOR)  
+                $this->data['classes'] = $this->message->get_list('classes', $condition, '', '', '', 'id', 'ASC');
+            else
+            {
+                $my_supervisor = $this->message->get_list('supervisors', array('user_id'=> $this->session->userdata('id')), '', '', '', 'id', 'ASC');
+                if ($my_supervisor) {
+                    $condition['supervisor_id'] = $my_supervisor[0]->id;
+                    $this->data['classes'] = $this->message->get_list('classes', $condition, '', '', '', 'id', 'ASC');
+                }
+            }
         } 
 
         $this->data['roles'] = $this->message->get_list('roles', array('status' => 1), '', '', '', 'id', 'ASC');
-        
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
         $this->layout->title($this->lang->line('compose') . ' ' . $this->lang->line('message') . ' | ' . SMS);
         $this->layout->view('message/compose', $this->data);
     }
@@ -225,7 +256,7 @@ class Message extends MY_Controller {
         check_permission(VIEW);
 
         if ($id) {
-            $this->data['message'] = $this->message->get_single_message($id);
+            $this->data['message'] = $this->message->get_single_message($id,false);
             $this->data['replies'] = $this->message->get_list('replies', array('message_id' => $id), '', '', '', 'id', 'ASC');
 
             if (!$this->data['message']) {
@@ -234,6 +265,7 @@ class Message extends MY_Controller {
         }
 
         $this->data['view'] = TRUE;
+        $this->data['messages'] = $this->message->get_message_list($type = 'supervisor-list');
         $this->layout->title($this->lang->line('read_message') . ' | ' . SMS);
         $this->layout->view('message/view', $this->data);
     }
