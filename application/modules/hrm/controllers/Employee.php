@@ -236,6 +236,27 @@ class Employee extends MY_Controller {
         $this->form_validation->set_rules('salary_type', $this->lang->line('salary_type'), 'trim|required');
         $this->form_validation->set_rules('other_info', $this->lang->line('other_info'), 'trim');
     }
+
+    /*****************Function _prepare_employee_retired_validation**********************************
+    * @type            : Function
+    * @function name   : _prepare_employee_validation
+    * @description     : Process "Employee" user input data validation                 
+    *                       
+    * @param           : null
+    * @return          : null 
+    * ********************************************************** */
+    private function _prepare_employee_retired_validation() {
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div class="error-message" style="color: red;">', '</div>');
+
+        
+        
+        $this->form_validation->set_rules('retired_at', $this->lang->line('role'), 'trim|required');
+        $this->form_validation->set_rules('conditions', $this->lang->line('role'), 'trim|required');
+        $this->form_validation->set_rules('duties', $this->lang->line('role'), 'trim|required');
+        $this->form_validation->set_rules('rights', $this->lang->line('role'), 'trim|required');
+        
+    }
    
     
                     
@@ -317,6 +338,41 @@ class Employee extends MY_Controller {
         if ($_FILES['resume']['name']) {
             $data['resume'] = $this->_upload_resume();
         }
+        return $data;
+    }
+
+    /*****************Function _get_posted_employee_retired_data**********************************
+    * @type            : Function
+    * @function name   : _get_posted_employee_data
+    * @description     : Prepare "Employee" user input data to save into database                  
+    *                       
+    * @param           : null
+    * @return          : $data array(); value 
+    * ********************************************************** */ 
+    private function _get_posted_employee_retired_data() {
+
+        $items = array();
+        $items[] = 'employee_id';
+        $items[] = 'conditions';
+        $items[] = 'duties';
+        $items[] = 'rights';
+        
+        $data = elements($items, $_POST);  
+        
+        $data['retired_at'] = date('Y-m-d', strtotime($this->input->post('retired_at')));
+
+        if ($this->input->post('id')) {
+            $data['modified_at'] = date('Y-m-d H:i:s');
+            $data['modified_by'] = logged_in_user_id();
+        } else {
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['created_by'] = logged_in_user_id();
+            $data['status'] = 1;
+            // create user 
+            $data['user_id'] = $this->employee->create_user();
+        }
+
+    
         return $data;
     }
 
@@ -452,5 +508,118 @@ class Employee extends MY_Controller {
         }
         redirect('hrm/employee');
     }
+
+    /*****************Function stop**********************************
+    * @type            : Function
+    * @function name   : stop
+    * @description     : Load Stop "Employee" user interface                 
+    *                    with populate "Employee" value 
+    *                    and process to update "Employee" into database    
+    * @param           : $id integer value
+    * @return          : null 
+    * ********************************************************** */
+    public function stop($id = null) {
+
+        check_permission(EDIT);
+
+        $updated = $this->employee->update('employees', ['status'=>2,'stopped_at'=>date('Y-m-d H:i:s')], array('id' => $id));
+
+                if ($updated) {
+                    success($this->lang->line('update_success'));
+                    
+                } else {
+                    error($this->lang->line('update_failed'));
+             
+                }
+                redirect('hrm/employee/index');
+    }
+
+
+    /*****************Function reactive**********************************
+    * @type            : Function
+    * @function name   : stop
+    * @description     : Load Reactive "Employee" user interface                 
+    *                    with populate "Employee" value 
+    *                    and process to update "Employee" into database    
+    * @param           : $id integer value
+    * @return          : null 
+    * ********************************************************** */
+    public function reactive($id = null) {
+
+        check_permission(EDIT);
+
+        $updated = $this->employee->update('employees', ['status'=>1,'stopped_at'=>null], array('id' => $id));
+
+                if ($updated) {
+                    success($this->lang->line('update_success'));
+                    
+                } else {
+                    error($this->lang->line('update_failed'));
+             
+                }
+                redirect('hrm/employee/index');
+    }
+
+    /*****************Function edit**********************************
+    * @type            : Function
+    * @function name   : edit
+    * @description     : Load Update "Employee" user interface                 
+    *                    with populate "Employee" value 
+    *                    and process to update "Employee" into database    
+    * @param           : $id integer value
+    * @return          : null 
+    * ********************************************************** */
+    public function retired($id = null) {
+
+        check_permission(EDIT);
+
+        if ($_POST) {
+            $this->_prepare_employee_retired_validation();
+            if ($this->form_validation->run() === TRUE) {
+                $data = $this->_get_posted_employee_retired_data();
+                
+                $insert_id = $this->employee->insert('resignation_log', $data);
+                if ($insert_id) {
+                    $updated = $this->employee->update('employees', ['status'=>3,'retired_at'=>$data['retired_at']], array('id' => $data['employee_id']));
+                    success($this->lang->line('operation_done_successfully'));
+                    redirect('hrm/employee/index');
+                } else {
+                    error($this->lang->line('operation_failed'));
+                    redirect('hrm/employee/retired');
+                }
+            } else {                
+                $this->data['employee'] = $this->employee->get_single_employee($this->input->post('id'));
+            }
+        } else {
+            if ($id) {
+                $this->data['employee'] = $this->employee->get_single_employee($id);
+
+                if (!$this->data['employee']) {
+                    redirect('hrm/employee/index');
+                }
+            }
+        }
+
+        $this->data['employees'] = $this->employee->get_employee_list();
+        $this->data['roles'] = $this->employee->get_list('roles', array('status' => 1), '', '', '', 'id', 'ASC');
+        
+        
+        
+        if($this->session->userdata('role_id') != SUPER_ADMIN){
+            
+            $condition = array();
+            $condition['status'] = 1;
+                $condition['school_id'] = $this->session->userdata('school_id');        
+            $this->data['designations'] = $this->employee->get_list('designations', $condition, '', '', '', 'id', 'ASC');
+            $this->data['grades'] = $this->employee->get_list('salary_grades', $condition, '', '', '', 'id', 'ASC');
+        }
+        
+       
+        $this->data['school_id'] = $this->data['employee']->school_id;
+        $this->data['retired'] = TRUE;
+        $this->layout->title($this->lang->line('edit') . ' ' . $this->lang->line('employee') . ' | ' . SMS);
+        $this->layout->view('employee/index', $this->data);
+    }
+
 
 }

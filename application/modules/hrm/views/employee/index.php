@@ -37,6 +37,9 @@
                         <?php if(isset($edit)){ ?>
                             <li  class="active"><a href="#tab_edit_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('edit'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>                          
                         <?php } ?> 
+                        <?php if(isset($retired)){ ?>
+                            <li  class="active"><a href="#tab_retired_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('retired'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>                          
+                        <?php } ?> 
                             
                         <?php if(isset($detail)){ ?>
                             <li  class="active"><a href="#tab_view_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-eye"></i> <?php echo $this->lang->line('view'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>                          
@@ -44,7 +47,7 @@
                             
                     </ul>
                     <br/>
-                    
+                   
                     <div class="tab-content">
                         <div  class="tab-pane fade in <?php if(isset($list)){ echo 'active'; }?>" id="tab_employee_list" >
                             <div class="x_content">
@@ -61,13 +64,17 @@
                                         <th><?php echo $this->lang->line('phone'); ?></th>
                                         <th><?php echo $this->lang->line('email'); ?></th>
                                         <th><?php echo $this->lang->line('join_date'); ?></th>
+                                        <th><?php echo $this->lang->line('stop_date'); ?></th>
+                                        <th><?php echo $this->lang->line('retired_date'); ?></th>
                                         <th><?php echo $this->lang->line('action'); ?></th>                                            
                                     </tr>
                                 </thead>
                                 <tbody>   
                                     <?php  $count = 1; if(isset($employees) && !empty($employees)){ ?>
                                         <?php foreach($employees as $obj){ ?>
-                                        <tr>
+                                        <?php $rowClass = "normal" ?>
+                                        
+                                        <tr class="<?php echo $rowClass; ?>">
                                             <td><?php echo $count++; ?></td>
                                             <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
                                                 <td><?php echo $obj->school_name; ?></td>
@@ -84,9 +91,23 @@
                                             <td><?php echo $obj->phone; ?></td>
                                             <td><?php echo $obj->email; ?></td>
                                             <td><?php echo $obj->joining_date; ?></td>
+                                            <td><?php echo $obj->stopped_at; ?></td>
+                                            <td><?php echo $obj->retired_at ? ((new \DateTime($obj->retired_at))->format('Y-m-d')) : ''; ?></td>
                                             <td>
                                                 <?php if(has_permission(EDIT, 'hrm', 'employee')){ ?> 
                                                     <a href="<?php echo site_url('hrm/employee/edit/'.$obj->id); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('edit'); ?> </a><br/>
+                                                <?php } ?> 
+                                                <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status == 1 ){ /* stop button */?> 
+                                                    <a href="<?php echo site_url('hrm/employee/stop/'.$obj->id); ?>" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('stop'); ?> </a><br/>
+                                                <?php } ?> 
+                                                <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status == 2 ){ /* reactive button */?> 
+                                                    <a href="<?php echo site_url('hrm/employee/reactive/'.$obj->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('re_active'); ?> </a><br/>
+                                                <?php } ?> 
+                                                <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status == 3 ){ /* reactive button */?> 
+                                                    <a href="<?php echo site_url('hrm/employee/resume/'.$obj->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('resume'); ?> </a><br/>
+                                                <?php } ?> 
+                                                <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status != 3 ){ /* reactive button */?> 
+                                                    <a href="<?php echo site_url('hrm/employee/retired/'.$obj->id); ?>" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('retired'); ?> </a><br/>
                                                 <?php } ?> 
                                                 <?php if(has_permission(VIEW, 'hrm', 'employee')){ ?>
                                                     <a href="<?php echo site_url('hrm/employee/view/'.$obj->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> <?php echo $this->lang->line('view'); ?> </a><br/>
@@ -513,6 +534,55 @@
                                         <input type="hidden" name="id" id="edit_id" value="<?php echo $employee->id; ?>" />
                                         <a href="<?php echo site_url('hrm/employee'); ?>" class="btn btn-primary"><?php echo $this->lang->line('cancel'); ?></a>
                                         <button id="send" type="submit" class="btn btn-success"><?php echo $this->lang->line('update'); ?></button>
+                                    </div>
+                                </div>
+                                <?php echo form_close(); ?>
+                            </div>
+                        </div>                          
+                        <?php } ?>
+
+
+                        <?php if(isset($retired)){ ?>
+                        
+                        <div class="tab-pane fade in active" id="tab_edit_employee">
+                            <div class="x_content"> 
+                            <?php echo form_open_multipart(site_url('hrm/employee/retired/'. $employee->id), array('name' => 'retired', 'id' => 'retired', 'class'=>'form-horizontal form-label-left'), ''); ?>
+                                
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dob"><?php echo $this->lang->line('retired_date'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="retired_at"  id="edit_dob" value="<?php echo isset($_POST['retired_at']) ?  date('d-m-Y', strtotime($_POST['retired_at'])) : '' ?>" placeholder="<?php echo $this->lang->line('retired_date'); ?>" required="required" type="text">
+                                        <div class="help-block"><?php echo form_error('dob'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="conditions"><?php echo $this->lang->line('conditions'); ?><span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea  class="form-control col-md-7 col-xs-12"  name="conditions"  id="conditions" placeholder="<?php echo $this->lang->line('conditions'); ?>"><?php echo isset($_POST['conditions']) ? $_POST['conditions'] : ''; ?></textarea>
+                                        <div class="help-block"><?php echo form_error('present_address'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="duties"><?php echo $this->lang->line('duties'); ?><span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea  class="form-control col-md-7 col-xs-12"  name="duties"  id="duties" placeholder="<?php echo $this->lang->line('duties'); ?>"><?php echo isset($_POST['duties']) ?  $_POST['duties'] : ''; ?></textarea>
+                                        <div class="help-block"><?php echo form_error('present_address'); ?></div>
+                                    </div>
+                                </div>
+                                 <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rights"><?php echo $this->lang->line('rights'); ?><span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea  class="form-control col-md-7 col-xs-12"  name="rights"  id="rights" placeholder="<?php echo $this->lang->line('rights'); ?>"><?php echo isset($_POST['rights']) ?  $_POST['rights'] : ''; ?></textarea>
+                                        <div class="help-block"><?php echo form_error('present_address'); ?></div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="employee_id" value="<?php echo $employee->id ?>">
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <input type="hidden" name="id" id="retired_id" value="<?php echo $employee->id; ?>" />
+                                        <a href="<?php echo site_url('hrm/employee'); ?>" class="btn btn-primary"><?php echo $this->lang->line('cancel'); ?></a>
+                                        <button id="send" type="submit" class="btn btn-success"><?php echo $this->lang->line('confirm'); ?></button>
                                     </div>
                                 </div>
                                 <?php echo form_close(); ?>

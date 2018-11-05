@@ -565,3 +565,15 @@ $lang['_department'] = "Department";
 $lang['supervisor'] = "Supervisor";
 $lang['manage_supervisor'] = "Mange Supervisor";
 $lang['messages'] = "Messages";
+$lang['stop'] = "Stop";
+$lang['stop_date'] = "Stopping Date";
+$lang['re_active'] = "Reactive";
+$lang['retired'] = "Retired";
+
+$lang['conditions'] = "Conditions";
+$lang['duties'] = "Duties";
+$lang['rights'] = "Rights";
+$lang['retired_date'] = "Retiring Date";
+$lang['operation_done_successfully'] = "Operation done successfully";
+$lang['operation_failed'] = "Operation failed";
+$lang['resume'] = "Resume";
