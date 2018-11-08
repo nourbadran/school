@@ -163,6 +163,66 @@ class Employee extends MY_Controller {
         $this->layout->view('employee/index', $this->data);
     }
 
+
+    /*****************Function addReward**********************************
+     * @type            : Function
+     * @function name   : edit
+     * @description     : Add Reward
+     * @param           : $id integer value
+     * @return          : null
+     * ********************************************************** */
+    public function addReward($id = null) {
+
+        check_permission(EDIT);
+
+        if ($_POST) {
+            $this->_prepare_employee_reward_validation();
+            if ($this->form_validation->run() === TRUE) {
+                $data = $this->_get_posted_employee_reward_data();
+                $data['employee_id'] = $id;
+                $insert = $this->employee->insert('employee_rewards', $data, array('id' => $id));
+
+                if ($insert) {
+                    success($this->lang->line('insert_success'));
+                    redirect('hrm/employee/view/' . $id);
+                } else {
+                    error($this->lang->line('insert_failed'));
+                    redirect('hrm/employee/view/' . $id);
+                }
+            } else {
+                $this->data['employee'] = $this->employee->get_single_employee($this->input->post('id'));
+            }
+        } else {
+            if ($id) {
+                $this->data['employee'] = $this->employee->get_single_employee($id);
+
+                if (!$this->data['employee']) {
+                    redirect('hrm/employee/index');
+                }
+            }
+        }
+
+        $this->data['employees'] = $this->employee->get_employee_list();
+        $this->data['roles'] = $this->employee->get_list('roles', array('status' => 1), '', '', '', 'id', 'ASC');
+
+
+
+        if($this->session->userdata('role_id') != SUPER_ADMIN){
+
+            $condition = array();
+            $condition['status'] = 1;
+            $condition['school_id'] = $this->session->userdata('school_id');
+            $this->data['designations'] = $this->employee->get_list('designations', $condition, '', '', '', 'id', 'ASC');
+            $this->data['grades'] = $this->employee->get_list('salary_grades', $condition, '', '', '', 'id', 'ASC');
+        }
+
+
+        $this->data['school_id'] = $this->data['employee']->school_id;
+        $this->data['addReward'] = TRUE;
+        $this->layout->title($this->lang->line('edit') . ' ' . $this->lang->line('employee') . ' | ' . SMS);
+        $this->layout->view('employee/index', $this->data);
+    }
+
         
     
     /*****************Function view**********************************
@@ -195,7 +255,8 @@ class Employee extends MY_Controller {
         
         $this->data['designations'] = $this->employee->get_list('designations', $condition, '', '', '', 'id', 'ASC');
         $this->data['grades'] = $this->employee->get_list('salary_grades', $condition, '', '', '', 'id', 'ASC');
-        
+        $this->data['rewards'] = $this->employee->get_list('employee_rewards', ['employee_id'=>$employee_id], '', '', '', 'date', 'DESC');
+
         $this->data['detail'] = TRUE;
         $this->layout->title($this->lang->line('view') . ' ' . $this->lang->line('employee') . ' | ' . SMS);
         $this->layout->view('employee/index', $this->data);
@@ -230,11 +291,24 @@ class Employee extends MY_Controller {
         $this->form_validation->set_rules('gender', $this->lang->line('gender'), 'trim|required');
         $this->form_validation->set_rules('blood_group', $this->lang->line('blood_group'), 'trim');
         $this->form_validation->set_rules('religion', $this->lang->line('religion'), 'trim');
+        $this->form_validation->set_rules('start_work_time', $this->lang->line('start_work_time'), 'trim|required');
+        $this->form_validation->set_rules('end_work_time', $this->lang->line('end_work_time'), 'trim|required');
         $this->form_validation->set_rules('dob', $this->lang->line('birth_date'), 'trim|required');
         $this->form_validation->set_rules('joining_date', $this->lang->line('join_date'), 'trim|required');
+        $this->form_validation->set_rules('monthly_leaves_credit', $this->lang->line('monthly_leaves_credit'), 'trim|required');
         $this->form_validation->set_rules('salary_grade_id', $this->lang->line('salary_grade'), 'trim|required');
         $this->form_validation->set_rules('salary_type', $this->lang->line('salary_type'), 'trim|required');
         $this->form_validation->set_rules('other_info', $this->lang->line('other_info'), 'trim');
+    }
+
+    private function _prepare_employee_reward_validation() {
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div class="error-message" style="color: red;">', '</div>');
+
+
+
+        $this->form_validation->set_rules('date', $this->lang->line('role'), 'trim|required');
+        $this->form_validation->set_rules('value', $this->lang->line('role'), 'trim|required');
     }
 
     /*****************Function _prepare_employee_retired_validation**********************************
@@ -256,6 +330,17 @@ class Employee extends MY_Controller {
         $this->form_validation->set_rules('duties', $this->lang->line('role'), 'trim|required');
         $this->form_validation->set_rules('rights', $this->lang->line('role'), 'trim|required');
         
+    }
+
+    private function _prepare_employee_resume_validation() {
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div class="error-message" style="color: red;">', '</div>');
+
+
+
+        $this->form_validation->set_rules('resume_at', $this->lang->line('role'), 'trim|required');
+        $this->form_validation->set_rules('resume_conditions', $this->lang->line('role'), 'trim|required');
+
     }
    
     
@@ -314,7 +399,10 @@ class Employee extends MY_Controller {
         $items[] = 'other_info';
         $items[] = 'salary_grade_id';
         $items[] = 'salary_type';      
-        
+        $items[] = 'monthly_leaves_credit';
+        $items[] = 'start_work_time';
+        $items[] = 'end_work_time';
+
         $data = elements($items, $_POST);  
         
 
@@ -337,6 +425,29 @@ class Employee extends MY_Controller {
         }
         if ($_FILES['resume']['name']) {
             $data['resume'] = $this->_upload_resume();
+        }
+        return $data;
+    }
+
+    private function _get_posted_employee_reward_data() {
+
+        $items = array();
+        $items[] = 'value';
+
+
+        $data = elements($items, $_POST);
+
+
+        $data['date'] = date('Y-m-d', strtotime($this->input->post('date')));
+
+        if ($this->input->post('id')) {
+            $data['modified_at'] = date('Y-m-d H:i:s');
+            $data['modified_by'] = logged_in_user_id();
+        } else {
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['created_by'] = logged_in_user_id();
+
+
         }
         return $data;
     }
@@ -373,6 +484,31 @@ class Employee extends MY_Controller {
         }
 
     
+        return $data;
+    }
+
+    private function _get_posted_employee_resume_data() {
+
+        $items = array();
+        $items[] = 'employee_id';
+        $items[] = 'retired_log_id';
+        $items[] = 'resume_conditions';
+
+        $data = elements($items, $_POST);
+
+        $data['resume_at'] = date('Y-m-d', strtotime($this->input->post('resume_at')));
+
+        if ($this->input->post('id')) {
+            $data['modified_at'] = date('Y-m-d H:i:s');
+            $data['modified_by'] = logged_in_user_id();
+        } else {
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['created_by'] = logged_in_user_id();
+            $data['status'] = 1;
+
+        }
+
+
         return $data;
     }
 
@@ -509,6 +645,38 @@ class Employee extends MY_Controller {
         redirect('hrm/employee');
     }
 
+    /*****************Function delete reward**********************************
+     * @type            : Function
+     * @function name   : delete
+     * @description     : delete "Employee Reward" data from database
+     *                     and unlink employee photo and Resume from server
+     * @param           : $id integer value
+     * @return          : null
+     * ********************************************************** */
+    public function delete_reward($id = null) {
+
+
+
+        if(!is_numeric($id)){
+            error($this->lang->line('unexpected_error'));
+            redirect('hrm/employee');
+        }
+
+        $reward = $this->employee->get_single('employee_rewards', array('id' => $id));
+        if (!empty($reward)) {
+
+            // delete employee reward data
+            $this->employee->delete('employee_rewards', array('id' => $id));
+
+
+
+            success($this->lang->line('delete_success'));
+        } else {
+            error($this->lang->line('delete_failed'));
+        }
+        redirect('hrm/employee/view/'.$reward->employee_id);
+    }
+
     /*****************Function stop**********************************
     * @type            : Function
     * @function name   : stop
@@ -558,6 +726,73 @@ class Employee extends MY_Controller {
              
                 }
                 redirect('hrm/employee/index');
+    }
+    /*****************Function resume**********************************
+     * @type            : Function
+     * @function name   : stop
+     * @description     : Load Reactive "Employee" user interface
+     *                    with populate "Employee" value
+     *                    and process to update "Employee" into database
+     * @param           : $id integer value
+     * @return          : null
+     * ********************************************************** */
+    public function resume($id = null) {
+
+        check_permission(EDIT);
+
+        if ($_POST  ) {
+            $this->_prepare_employee_resume_validation();
+            if ($this->form_validation->run() === TRUE)
+            {
+                $data = $this->_get_posted_employee_resume_data();
+
+                $rs = $this->employee->update('resignation_log', ['resume_conditions'=>$data['resume_conditions'],'resume_at'=>$data['resume_at']], array('id' => $data['retired_log_id']));
+                if ($rs) {
+                    $updated = $this->employee->update('employees', ['status'=>1,'retired_at'=>null], array('id' => $data['employee_id']));
+                    success($this->lang->line('operation_done_successfully'));
+                    redirect('hrm/employee/index');
+                } else {
+                    error($this->lang->line('operation_failed'));
+                    redirect('hrm/employee/resume');
+                }
+            }
+            else {
+                $this->data['employee'] = $this->employee->get_single_employee($this->input->post('id'));
+            }
+        } else {
+            if ($id) {
+                $this->data['employee'] = $this->employee->get_single_employee($id);
+
+                if (!$this->data['employee']) {
+                    redirect('hrm/employee/index');
+                }
+            }
+        }
+
+        $this->data['employees'] = $this->employee->get_employee_list();
+        $this->data['roles'] = $this->employee->get_list('roles', array('status' => 1), '', '', '', 'id', 'ASC');
+
+
+
+        if($this->session->userdata('role_id') != SUPER_ADMIN){
+
+            $condition = array();
+            $condition['status'] = 1;
+            $condition['school_id'] = $this->session->userdata('school_id');
+            $this->data['designations'] = $this->employee->get_list('designations', $condition, '', '', '', 'id', 'ASC');
+            $this->data['grades'] = $this->employee->get_list('salary_grades', $condition, '', '', '', 'id', 'ASC');
+        }
+
+        $logs = $this->employee->get_list('resignation_log', array('employee_id' => $id), '', '', '', 'id', 'DESC');
+        if (!$logs)
+            redirect('hrm/employee/index');
+        $this->data['school_id'] = $this->data['employee']->school_id;
+        $this->data['resume'] = TRUE;
+        $this->data['ret_log'] = $logs[0];
+        if (  $logs[0]->resume_at )
+            redirect('hrm/employee/index');
+        $this->layout->title($this->lang->line('edit') . ' ' . $this->lang->line('employee') . ' | ' . SMS);
+        $this->layout->view('employee/index', $this->data);
     }
 
     /*****************Function edit**********************************

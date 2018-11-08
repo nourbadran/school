@@ -36,11 +36,17 @@
                         
                         <?php if(isset($edit)){ ?>
                             <li  class="active"><a href="#tab_edit_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('edit'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>                          
-                        <?php } ?> 
+                        <?php } ?>
+                        <?php if(isset($addReward)){ ?>
+                            <li  class="active"><a href="#tab_add_reward_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('add-reward'); ?></a> </li>
+                        <?php } ?>
                         <?php if(isset($retired)){ ?>
                             <li  class="active"><a href="#tab_retired_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('retired'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>                          
-                        <?php } ?> 
-                            
+                        <?php } ?>
+                        <?php if(isset($resume)){ ?>
+                            <li  class="active"><a href="#tab_resume_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('resume'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>
+                        <?php } ?>
+
                         <?php if(isset($detail)){ ?>
                             <li  class="active"><a href="#tab_view_employee"  role="tab"  data-toggle="tab" aria-expanded="false"><i class="fa fa-eye"></i> <?php echo $this->lang->line('view'); ?> <?php echo $this->lang->line('employee'); ?></a> </li>                          
                         <?php } ?>   
@@ -178,6 +184,22 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_time"><?php echo $this->lang->line('start_work_time'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="start_work_time"  id="add_start_time"  placeholder="<?php echo $this->lang->line('start_work_time'); ?>" required="required" type="text">
+                                        <div class="help-block"><?php echo form_error('start_time'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="end_time"><?php echo $this->lang->line('end_work_time'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="end_work_time"  id="add_end_time"  placeholder="<?php echo $this->lang->line('end_work_time'); ?>" required="required" type="text">
+                                        <div class="help-block"><?php echo form_error('end_time'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender"><?php echo $this->lang->line('gender'); ?> <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select  class="form-control col-md-7 col-xs-12"  name="gender"  id="gender" required="required">
@@ -267,7 +289,14 @@
                                         <div class="help-block"><?php echo form_error('salary_type'); ?></div>
                                     </div>
                                 </div>
-                                
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="monthly_leaves_credit"><?php echo $this->lang->line('monthly_leaves_credit'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="monthly_leaves_credit"  id="edit_monthly_leaves_credit" value="<?php echo isset($employee->monthly_leaves_credit) ?  $employee->monthly_leaves_credit : ''; ?>" placeholder="<?php echo $this->lang->line('monthly_leaves_credit'); ?>"  type="number">
+                                        <div class="help-block"><?php echo form_error('monthly_leaves_credit'); ?></div>
+                                    </div>
+                                </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"><?php echo $this->lang->line('email'); ?> <span class="required">*</span>
                                     </label>
@@ -387,6 +416,22 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_time"><?php echo $this->lang->line('start_time'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="start_work_time"  id="edit_start_time"  placeholder="<?php echo $this->lang->line('start_work_time'); ?>" required="required" type="text">
+                                        <div class="help-block"><?php echo form_error('start_time'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="end_time"><?php echo $this->lang->line('start_time'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="end_work_time"  id="edit_end_time"  placeholder="<?php echo $this->lang->line('end_work_time'); ?>" required="required" type="text">
+                                        <div class="help-block"><?php echo form_error('end_time'); ?></div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender"><?php echo $this->lang->line('gender'); ?> <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select  class="form-control col-md-7 col-xs-12"  name="gender"  id="gender" required="required">
@@ -476,7 +521,14 @@
                                         <div class="help-block"><?php echo form_error('salary_type'); ?></div>
                                     </div>
                                 </div>
-                                
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="monthly_leaves_credit"><?php echo $this->lang->line('monthly_leaves_credit'); ?> <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="monthly_leaves_credit"  id="edit_monthly_leaves_credit" value="<?php echo isset($employee->monthly_leaves_credit) ?   $employee->monthly_leaves_credit : ''; ?>" placeholder="<?php echo $this->lang->line('monthly_leaves_credit'); ?>"  type="number">
+                                        <div class="help-block"><?php echo form_error('monthly_leaves_credit'); ?></div>
+                                    </div>
+                                </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"><?php echo $this->lang->line('email'); ?> <span class="required">*</span>
                                     </label>
@@ -589,7 +641,79 @@
                             </div>
                         </div>                          
                         <?php } ?>
-                        
+
+                        <?php if(isset($resume)){ ?>
+
+                            <div class="tab-pane fade in active" id="tab_edit_employee">
+                                <div class="x_content">
+                                    <?php echo form_open_multipart(site_url('hrm/employee/resume/'. $employee->id), array('name' => 'resume', 'id' => 'resume', 'class'=>'form-horizontal form-label-left'), ''); ?>
+
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dob"><?php echo $this->lang->line('resume_date'); ?> <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input  class="form-control col-md-7 col-xs-12"  name="resume_at"  id="edit_dob" value="<?php echo isset($_POST['resume_at']) ?  date('d-m-Y', strtotime($_POST['resume_at'])) : '' ?>" placeholder="<?php echo $this->lang->line('resume_date'); ?>" required="required" type="text">
+                                            <div class="help-block"><?php echo form_error('resume_at'); ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="resume_conditions"><?php echo $this->lang->line('conditions'); ?><span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <textarea  class="form-control col-md-7 col-xs-12"  name="resume_conditions"  id="resume_conditions" placeholder="<?php echo $this->lang->line('conditions'); ?>"><?php echo isset($_POST['resume_conditions']) ? $_POST['resume_conditions'] : ''; ?></textarea>
+                                            <div class="help-block"><?php echo form_error('resume_conditions'); ?></div>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="employee_id" value="<?php echo $employee->id ?>">
+                                    <input type="hidden" name="retired_id" id="retired_id" value="<?php echo $employee->id; ?>" />
+                                    <input type="hidden" name="retired_log_id" id="retired_log_id" value="<?php echo $ret_log->id; ?>" />
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+
+                                            <a href="<?php echo site_url('hrm/employee'); ?>" class="btn btn-primary"><?php echo $this->lang->line('cancel'); ?></a>
+                                            <button id="send" type="submit" class="btn btn-success"><?php echo $this->lang->line('confirm'); ?></button>
+                                        </div>
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php if(isset($addReward)){ ?>
+
+                            <div class="tab-pane fade in active" id="tab_add_reward_employee">
+                                <div class="x_content">
+                                    <?php echo form_open_multipart(site_url('hrm/employee/addReward/'. $employee->id), array('name' => 'resume', 'id' => 'resume', 'class'=>'form-horizontal form-label-left'), ''); ?>
+
+
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date"><?php echo $this->lang->line('date'); ?> <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input  class="form-control col-md-7 col-xs-12"  name="date"  id="edit_dob" value="<?php echo isset($_POST['date']) ?  date('d-m-Y', strtotime($_POST['date'])) : '' ?>" placeholder="<?php echo $this->lang->line('date'); ?>" required="required" type="text">
+                                            <div class="help-block"><?php echo form_error('date'); ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="value"><?php echo $this->lang->line('value'); ?> <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input  class="form-control col-md-7 col-xs-12"  name="value"  id="value" value="<?php echo isset($_POST['value']) ?  date('d-m-Y', strtotime($_POST['value'])) : '' ?>" placeholder="<?php echo $this->lang->line('value'); ?>" required="required" type="number">
+                                            <div class="help-block"><?php echo form_error('value'); ?></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+
+                                            <a href="<?php echo site_url('hrm/employee'); ?>" class="btn btn-primary"><?php echo $this->lang->line('cancel'); ?></a>
+                                            <button id="send" type="submit" class="btn btn-success"><?php echo $this->lang->line('confirm'); ?></button>
+                                        </div>
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <?php if(isset($detail)){ ?>
                         
                         <div class="tab-pane fade in active" id="tab_view_employee">
@@ -619,10 +743,23 @@
                                        : <?php echo $employee->present_address; ?>
                                     </div>
                                 </div>
+
                                 <div class="item form-group">
                                     <label class="col-md-3 col-sm-3 col-xs-4"><?php echo $this->lang->line('permanent'); ?> <?php echo $this->lang->line('address'); ?></label>
                                     <div class="col-md-9 col-sm-9 col-xs-8">
                                        : <?php echo $employee->permanent_address; ?>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-4"><?php echo $this->lang->line('start_work_time'); ?></label>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        : <?php echo $employee->start_work_time; ?>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-4"><?php echo $this->lang->line('end_work_time'); ?></label>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        : <?php echo $employee->end_work_time; ?>
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -675,6 +812,12 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
+                                    <label class="col-md-3 col-sm-3 col-xs-4"><?php echo $this->lang->line('monthly_leaves_credit'); ?></label>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        : <?php echo $employee->monthly_leaves_credit; ?>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
                                     <label class="col-md-3 col-sm-3 col-xs-4"><?php echo $this->lang->line('email'); ?></label>
                                     <div class="col-md-9 col-sm-9 col-xs-8">
                                      : <?php echo $employee->email; ?>
@@ -703,19 +846,48 @@
                                     <div class="col-md-9 col-sm-9 col-xs-8">
                                      : <?php echo $employee->other_info; ?>
                                     </div>
-                                </div>                                
+                                </div>
+                                <h3><?php echo $this->lang->line('rewards'); ?></h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Value</th>
+                                            <th scope="col">Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ( $rewards as $reward )
+                                        {
+                                            $d = explode(' ',$reward->date);
+                                            echo '<tr>
+                                                    <td scope="row">'.$d[0].'</td>
+                                                    <td>'.$reward->value.'</td>
+                                                    <td><a href="'. site_url('hrm/employee/delete_reward/'.$reward->id).'" onclick="javascript: return confirm("'.$this->lang->line('confirm_alert').'")" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> '. $this->lang->line('delete').' </td>
+
+                                                <?php } ?>
+                                                  </tr>';
+                                        }
+                                        ?>
+
+                                    </tbody>
+                                </table>
                                 
                                 <?php if(has_permission(EDIT, 'hrm', 'employee')){ ?>
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
                                             <a href="<?php echo site_url('hrm/employee/edit/'.$employee->id); ?>" class="btn btn-primary"><?php echo $this->lang->line('update'); ?></a>
+                                            <a href="<?php echo site_url('hrm/employee/addReward/'.$employee->id); ?>" class="btn btn-primary"><?php echo $this->lang->line('add-reward'); ?></a>
                                         </div>
                                     </div>
                                 <?php } ?>
                                 <?php echo form_close(); ?>
                             </div>
-                        </div>                          
+                        </div>
+
                         <?php } ?>
                         
                     </div>
@@ -726,12 +898,20 @@
 </div>
 <link href="<?php echo VENDOR_URL; ?>datepicker/datepicker.css" rel="stylesheet">
  <script src="<?php echo VENDOR_URL; ?>datepicker/datepicker.js"></script>
- 
 
+
+<link href="<?php echo VENDOR_URL; ?>datepicker/datepicker.css" rel="stylesheet">
+<script src="<?php echo VENDOR_URL; ?>datepicker/datepicker.js"></script>
+<link href="<?php echo VENDOR_URL; ?>timepicker/timepicker.css" rel="stylesheet">
+<script src="<?php echo VENDOR_URL; ?>timepicker/timepicker.js"></script>
 
 <!-- Super admin js START  -->
  <script type="text/javascript">
-     
+
+     $('#add_start_time').timepicker();
+     $('#add_end_time').timepicker();
+     $('#edit_start_time').timepicker();
+     $('#edit_end_time').timepicker();
     $("document").ready(function() {
          <?php if(isset($edit) && !empty($edit)){ ?>
             $(".fn_school_id").trigger('change');
