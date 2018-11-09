@@ -35,6 +35,8 @@ class Marksheet_Model extends MY_Model {
         $this->db->where('M.student_id', $student_id);
         $this->db->where('M.exam_id', $exam_id);
         $this->db->where('M.school_id', $school_id);
+        if ($this->session->userdata('role_id') == GUARDIAN)
+            $this->db->where('M.is_confirmed', 1);
        
         return $this->db->get()->result();     
     }

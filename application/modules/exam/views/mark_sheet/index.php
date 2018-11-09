@@ -149,7 +149,7 @@
                                     <?php
                                         if($this->session->userdata('role_id') == SUPERVISOR && $obj->is_confirmed == 0 ){ 
                                      ?>      
-                                     <td><button id="confirm-btn" onclick="confirm(this)" data="<?php echo $obj->id ?>" class="btn btn-success">Confirm</button></td>    
+                                     <td><button id="confirm-btn_<?php echo $obj->id ?>" onclick="confirm_mark(this)" data="<?php echo $obj->id ?>" class="btn btn-success">Confirm</button></td>
                                      <?php }?>                              
                                 </tr>
                             <?php } ?>
@@ -170,20 +170,23 @@
 
 <script type="text/javascript">
     $(function () {
-    confirm = function (elm) {
-        
+        confirm_mark = function (elm) {
             var mark_id = $(elm).attr('data');
             $.ajax({       
                     type   : "POST",
-                    url    : "<?php echo site_url('marksheet/confirm'); ?>",
+                    url    : "<?php echo site_url('exam/marksheet/confirm'); ?>",
                     data   : {  mark_id : mark_id},               
                     async  : false,
                     success: function(response){                                                   
                        if(response)
                        {
                             toastr.success('Data updated successfully'); 
-                            $(elm).hide();
+
                        }
+                        $('#confirm-btn_'+mark_id).hide();
+                    },
+                    fail: function(xhr, textStatus, errorThrown){
+                        alert('request failed');
                     }
                 });
             };

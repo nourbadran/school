@@ -82,6 +82,7 @@ class Marksheet extends MY_Controller {
             else
                 $this->data['classes'] = $this->mark->get_list('classes', $condition, '','', '', 'id', 'ASC');
             $condition['academic_year_id'] = $this->academic_year_id;
+
             $this->data['exams'] = $this->mark->get_list('exams', $condition, '', '', '', 'id', 'ASC');
         } 
         
@@ -92,10 +93,8 @@ class Marksheet extends MY_Controller {
 
     public function confirm() {
         $mark_id = $this->input->post('mark_id');
-        $exam = $this->mark->get_single('marks',array('id'=>$mark_id),NULL);
-        $exam->is_confirmed = 1;
-        $exam->save();
-        return true;
+        $res = $this->mark->update('marks',array('is_confirmed'=>1),array('id'=>$mark_id));
+        return $res;
     }
 
 }
