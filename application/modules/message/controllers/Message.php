@@ -228,9 +228,10 @@ class Message extends MY_Controller {
                 $this->data['classes'] = $this->message->get_list('classes', $condition, '', '', '', 'id', 'ASC');
             else
             {
-                $my_supervisor = $this->message->get_list('supervisors', array('user_id'=> $this->session->userdata('id')), '', '', '', 'id', 'ASC');
-                if ($my_supervisor) {
-                    $condition['supervisor_id'] = $my_supervisor[0]->id;
+                //$my_supervisor = $this->message->get_list('supervisors', array('user_id'=> $this->session->userdata('id')), '', '', '', 'id', 'ASC');
+                //if ($my_supervisor)
+                {
+                    $condition['supervisor_id'] = $this->session->userdata('id');
                     $this->data['classes'] = $this->message->get_list('classes', $condition, '', '', '', 'id', 'ASC');
                 }
             }

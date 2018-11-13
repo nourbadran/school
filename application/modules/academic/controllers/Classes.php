@@ -45,7 +45,7 @@ class Classes extends MY_Controller {
             $condition['school_id'] = $this->session->userdata('school_id');        
             $this->data['teachers'] = $this->classes->get_list('teachers', $condition, '','', '', 'id', 'ASC');
         }        
-        $this->data['supervisors'] = $this->classes->get_list('supervisors', array(), '','', '', 'id', 'ASC');
+        $this->data['supervisors'] = $this->classes->get_supervisor_list();
         $this->data['list'] = TRUE;
         $this->layout->title($this->lang->line('manage_class'). ' | ' . SMS);
         $this->layout->view('class/index', $this->data);            
@@ -92,8 +92,8 @@ class Classes extends MY_Controller {
         if($this->session->userdata('role_id') != SUPER_ADMIN){            
             $condition['school_id'] = $this->session->userdata('school_id');        
             $this->data['teachers'] = $this->classes->get_list('teachers', $condition, '','', '', 'id', 'ASC');
-        }        
-        $this->data['supervisors'] = $this->classes->get_list('supervisors', array(), '','', '', 'id', 'ASC');
+        }
+        $this->data['supervisors'] = $this->classes->get_supervisor_list();
         $this->data['add'] = TRUE;
         $this->layout->title($this->lang->line('add'). ' ' . $this->lang->line('class'). ' | ' . SMS);
         $this->layout->view('class/index', $this->data);
@@ -143,8 +143,8 @@ class Classes extends MY_Controller {
             }
         }
 
-        $this->data['classes'] = $this->classes->get_class_list();   
-        $this->data['supervisors'] = $this->classes->get_list('supervisors', array(), '','', '', 'id', 'ASC');
+        $this->data['classes'] = $this->classes->get_class_list();
+        $this->data['supervisors'] = $this->classes->get_supervisor_list();
         $condition = array();
         $this->data['departments'] = $this->classes->get_list('departments', $condition, '','', '', 'id', 'ASC');
         $condition['status'] = 1;        

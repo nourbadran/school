@@ -20,8 +20,10 @@ class Student_Model extends MY_Model {
         $this->db->from('enrollments AS E');
         $this->db->join('students AS S', 'S.id = E.student_id', 'left');
         $this->db->join('users AS U', 'U.id = S.user_id', 'left');
+
         $this->db->join('classes AS C', 'C.id = E.class_id', 'left');
-        $this->db->join('supervisors AS SV', 'SV.id = C.supervisor_id', 'left');
+        $this->db->join('users AS U1', 'U1.id = C.supervisor_id', 'left');
+      //  $this->db->join('supervisors AS SV', 'SV.id = C.supervisor_id', 'left');
         $this->db->join('sections AS SE', 'SE.id = E.section_id', 'left');
         $this->db->join('schools AS SC', 'SC.id = S.school_id', 'left');
         $this->db->where('E.academic_year_id', $this->academic_year_id); 
@@ -37,7 +39,7 @@ class Student_Model extends MY_Model {
            $this->db->where('S.guardian_id', $this->session->userdata('profile_id'));
         }
         if($this->session->userdata('role_id') == SUPERVISOR){
-           $this->db->where('SV.user_id', $this->session->userdata('id'));
+           $this->db->where('U1.id', $this->session->userdata('id'));
            
         }
         

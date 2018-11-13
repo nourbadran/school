@@ -73,10 +73,11 @@ class Marksheet extends MY_Controller {
         if($this->session->userdata('role_id') != SUPER_ADMIN){ 
             $condition['school_id'] = $this->session->userdata('school_id');
             if ($this->session->userdata('role_id') == SUPERVISOR) {
-                $my_supervisor = $this->mark->get_list('supervisors', array('user_id'=> $this->session->userdata('id')), '', '', '', 'id', 'ASC');
-                if ($my_supervisor) {
+                //$my_supervisor = $this->mark->get_list('supervisors', array('user_id'=> $this->session->userdata('id')), '', '', '', 'id', 'ASC');
+                //if ($my_supervisor)
+                {
     
-                    $this->data['classes'] = $this->mark->get_list('classes', array('supervisor_id'=>$my_supervisor[0]->id), '', '', '', 'id', 'ASC');
+                    $this->data['classes'] = $this->mark->get_list('classes', array('supervisor_id'=>$this->session->userdata('id')), '', '', '', 'id', 'ASC');
                 }
             }
             else
