@@ -22,6 +22,9 @@ class Classes_Model extends MY_Model {
         if($this->session->userdata('role_id') != SUPER_ADMIN){
             $this->db->where('C.school_id', $this->session->userdata('school_id'));
         }
+         if($this->session->userdata('role_id') == SUPERVISOR){
+             $this->db->where('E.user_id', $this->session->userdata('id'));
+         }
         return $this->db->get()->result();
         
     }
