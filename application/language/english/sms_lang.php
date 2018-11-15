@@ -584,3 +584,5 @@ $lang['add-reward'] = "Add Reward";
 $lang['value'] = "Value";
 $lang['start_work_time'] = "Start Work Time";
 $lang['end_work_time'] = "End Work Time";
+$lang['import'] = "Import";
+$lang['file'] = "File";

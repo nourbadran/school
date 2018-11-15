@@ -20,6 +20,8 @@ class Employee extends MY_Controller {
     function __construct() {
         parent::__construct();
          $this->load->model('Employee_Model', 'employee', true);
+
+        $this->load->helper(array('form', 'url'));
     }
 
     
@@ -81,6 +83,44 @@ class Employee extends MY_Controller {
         
         $this->layout->title($this->lang->line('employee'). ' ' . $this->lang->line('attendance'). ' | ' . SMS);
         $this->layout->view('employee/index', $this->data);  
+    }
+
+    /*****************Function index**********************************
+     * @type            : Function
+     * @function name   : index
+     * @description     : Load "Employee Attendance" user interface
+     *                    and Process to manage daily Employee attendance
+     * @param           : null
+     * @return          : null
+     * ********************************************************** */
+    public function import() {
+
+        check_permission(VIEW);
+
+        if($_FILES)
+        {
+            $config['upload_path']          = './application/uploads/';
+            $config['allowed_types']        = '*';
+
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('file'))
+            {
+
+                $error = array('error' => $this->upload->display_errors());
+
+                $this->load->view('employee/import', $error);
+            }
+            else
+            {
+                $data = array('upload_data' => $this->upload->data());
+
+
+            }
+            $this->layout->view('employee/index', $this->data);
+        }
+
+        $this->layout->title($this->lang->line('employee'). ' ' . $this->lang->line('attendance'). ' | ' . SMS);
+        $this->layout->view('employee/import', $this->data);
     }
 
  

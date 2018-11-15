@@ -18,6 +18,7 @@
                 <?php } ?>
                 <?php if(has_permission(VIEW, 'attendance', 'employee')){ ?>
                    | <a href="<?php echo site_url('attendance/employee'); ?>"><?php echo $this->lang->line('employee'); ?> <?php echo $this->lang->line('attendance'); ?></a>                    
+                   | <a href="<?php echo site_url('attendance/employee/import'); ?>"><?php echo $this->lang->line('import'); ?> <?php echo $this->lang->line('employee'); ?> <?php echo $this->lang->line('attendance'); ?></a>
                 <?php } ?>
             </div>
 
