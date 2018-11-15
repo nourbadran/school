@@ -20,7 +20,7 @@ class Employee extends MY_Controller {
     function __construct() {
         parent::__construct();
          $this->load->model('Employee_Model', 'employee', true);
-
+        $this->load->library('excel');
         $this->load->helper(array('form', 'url'));
     }
 
@@ -113,7 +113,25 @@ class Employee extends MY_Controller {
             else
             {
                 $data = array('upload_data' => $this->upload->data());
+                $path = $_FILES["file"]["tmp_name"];
+                $object = PHPExcel_IOFactory::load($path);
+                //foreach($object->getWorksheetIterator() as $worksheet)
+                $worksheet = $object->getSheet(0);
+                {
+                    $highestRow = $worksheet->getHighestRow();
+                    $highestColumn = $worksheet->getHighestColumn();
+                    for($row=2; $row<=$highestRow; $row++)
+                    {
+                        $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                            NULL,
+                            TRUE,
+                            FALSE);
+                        //echo $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                        var_dump($rowData);
+                    }
 
+                }
+                die();
 
             }
             $this->layout->view('employee/index', $this->data);
