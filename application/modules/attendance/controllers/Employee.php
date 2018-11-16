@@ -225,7 +225,8 @@ class Employee extends MY_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('designation'));
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('phone'));
         $objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('email'));  
-        $objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('attendance'));        
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('date'));  
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', $this->lang->line('attendance'));        
         // set Row
         $rowCount = 2;
         foreach ($result as $element) {
@@ -234,7 +235,8 @@ class Employee extends MY_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $element['designation']);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $element['phone']);
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $element['email']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $element['attendance']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $date);
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $element['attendance']);
             $rowCount++;
         }
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
