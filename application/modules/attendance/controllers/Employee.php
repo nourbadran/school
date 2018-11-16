@@ -182,6 +182,67 @@ class Employee extends MY_Controller {
         $this->layout->view('employee/import', $this->data);
     }
 
+    public function export($date='',$school_id='')
+    {
+        $date = $this->input->get('date', TRUE);
+        $school_id = $this->input->get('school_id', TRUE);
+        // create file name
+        $fileName = 'data-'.time().'.xlsx';  
+
+        $employees = $this->employee->get_employee_list($school_id);   
+        $month      = date('m', strtotime($date));
+        $year       = date('Y', strtotime($date));       
+        $day        = date('d', strtotime($date));  
+        $result = array();
+        $i=0;
+        foreach( $employees as $e )
+        {
+            $attendance = get_employee_attendance($e->id, $school_id, $this->academic_year_id, $year, $month, $day );
+            if ($attendance == 'A') {
+                $attendance =  $this->lang->line('absent');
+            }
+            if ($attendance == 'P') {
+                $attendance =  $this->lang->line('present');
+            }
+            if ($attendance == 'L') {
+                $attendance =  $this->lang->line('late');
+            }
+            $r = array();
+            $r['sl_no'] = ++$i;
+            $r['name'] = $e->name;
+            $r['designation'] = $e->designtion;
+            $r['phone'] = $e->phone;
+            $r['email'] = $e->email;
+            $r['attendance'] =$attendance;
+            $result[] = $r;
+        }
+        
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('sl_no'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1',$this->lang->line('name'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('designation'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('phone'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('email'));  
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('attendance'));        
+        // set Row
+        $rowCount = 2;
+        foreach ($result as $element) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $element['sl_no']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $element['name']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $element['designation']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $element['phone']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $element['email']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $element['attendance']);
+            $rowCount++;
+        }
+        $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+        $objWriter->save($fileName);
+        // download file
+        header("Content-Type: application/vnd.ms-excel");
+        redirect(site_url().$fileName);     
+    }
  
 
     /*****************Function update_single_attendance**********************************

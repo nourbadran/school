@@ -57,6 +57,9 @@
            <?php } ?>
             
             <div class="x_content">
+              <?php  if (isset($employees) && !empty($employees)) { ?> 
+                <a class="pull-right btn btn-primary btn-xs" href="<?php echo site_url()?>attendance/employee/export?date=<?php echo $date;?>&school_id=<?php echo $school_id;?>"><i class="fa fa-file-excel-o"></i> <?php echo $this->lang->line('export'); ?></a>
+                <?php } ?>
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
