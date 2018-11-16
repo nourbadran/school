@@ -59,7 +59,7 @@ class Employee extends MY_Controller {
                     
                     $condition['employee_id'] = $obj->id;                    
                     $attendance = $this->employee->get_single('employee_attendances', $condition);
-                  
+                 
                     if(empty($attendance)){
                        $data['academic_year_id'] = $this->academic_year_id; 
                        $data['employee_id'] = $obj->id; 
