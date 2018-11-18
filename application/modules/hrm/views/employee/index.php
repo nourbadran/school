@@ -885,6 +885,76 @@
                                     </div>
                                 <?php } ?>
                                 <?php echo form_close(); ?>
+
+                                <h3><?php echo $this->lang->line('resignations'); ?></h3>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col"><?php echo $this->lang->line('Date of retirement'); ?></th>
+                                        <th scope="col"><?php echo $this->lang->line('conditions'); ?></th>
+                                        <th scope="col"><?php echo $this->lang->line('duties'); ?></th>
+                                        <th scope="col"><?php echo $this->lang->line('rights'); ?></th>
+                                        <th scope="col"><?php echo $this->lang->line('Date of resuming'); ?></th>
+                                        <th scope="col"><?php echo $this->lang->line('conditions of resuming'); ?></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    foreach ( $resignations as $resignation )
+                                    {
+                                        $d1 = explode(' ',$resignation->retired_at);
+                                        $d2 = explode(' ',$resignation->resume_at);
+                                        $ret_at = null;
+                                        $res_at = null;
+                                        if (count($d1)>0)
+                                            $ret_at = $d1[0];
+                                        if (count($d2)>0)
+                                            $res_at = $d2[0];
+                                        echo '<tr>
+                                                    <td scope="row">'.$ret_at.'</td>
+                                                    <td>'.$resignation->conditions.'</td>
+                                                    <td>'.$resignation->duties.'</td>
+                                                    <td>'.$resignation->rights.'</td>
+                                                    <td>'.$res_at.'</td>
+                                                    <td>'.$resignation->resume_conditions.'</td>
+                                                    
+                                                  </tr>';
+                                    }
+                                    ?>
+
+                                    </tbody>
+                                </table>
+                                <h3><?php echo $this->lang->line('stops'); ?></h3>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col"><?php echo $this->lang->line('Date of stopping'); ?></th>
+                                        <th scope="col"><?php echo $this->lang->line('Date of resuming'); ?></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    foreach ( $stops as $stop )
+                                    {
+                                        $d1 = explode(' ',$stop->stopped_at);
+                                        $d2 = explode(' ',$stop->resumed_at);
+                                        $ret_at = null;
+                                        $res_at = null;
+                                        if (count($d1)>0)
+                                            $ret_at = $d1[0];
+                                        if (count($d2)>0)
+                                            $res_at = $d2[0];
+                                        echo '<tr>
+                                                    <td scope="row">'.$ret_at.'</td>                                        
+                                                    <td>'.$res_at.'</td>                                                 
+                                                  </tr>';
+                                    }
+                                    ?>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

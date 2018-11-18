@@ -256,6 +256,8 @@ class Employee extends MY_Controller {
         $this->data['designations'] = $this->employee->get_list('designations', $condition, '', '', '', 'id', 'ASC');
         $this->data['grades'] = $this->employee->get_list('salary_grades', $condition, '', '', '', 'id', 'ASC');
         $this->data['rewards'] = $this->employee->get_list('employee_rewards', ['employee_id'=>$employee_id], '', '', '', 'date', 'DESC');
+        $this->data['resignations'] = $this->employee->get_list('resignation_log', ['employee_id'=>$employee_id], '', '', '', 'id', 'DESC');
+        $this->data['stops'] = $this->employee->get_list('stopping_log', ['employee_id'=>$employee_id], '', '', '', 'id', 'DESC');
 
         $this->data['detail'] = TRUE;
         $this->layout->title($this->lang->line('view') . ' ' . $this->lang->line('employee') . ' | ' . SMS);
@@ -691,7 +693,17 @@ class Employee extends MY_Controller {
         check_permission(EDIT);
 
         $updated = $this->employee->update('employees', ['status'=>2,'stopped_at'=>date('Y-m-d H:i:s')], array('id' => $id));
+        $data = [
+            'employee_id'=>$id,
+            'stopped_at'=>date('Y-m-d H:i:s'),
+            'resumed_at'=>null,
+            'created_at'=>date('Y-m-d H:i:s'),
+            'modified_at'=>date('Y-m-d H:i:s'),
+            'created_by'=>logged_in_user_id(),
+            'modified_by'=>logged_in_user_id(),
+        ];
 
+        $this->employee->insert('stopping_log',$data);
                 if ($updated) {
                     success($this->lang->line('update_success'));
                     
@@ -715,8 +727,11 @@ class Employee extends MY_Controller {
     public function reactive($id = null) {
 
         check_permission(EDIT);
-
+        $singleRec = $this->employee->get_last_stop_log($id);
         $updated = $this->employee->update('employees', ['status'=>1,'stopped_at'=>null], array('id' => $id));
+
+        if ($singleRec)
+            $updated = $this->employee->update('stopping_log', ['resumed_at'=>date('Y-m-d H:i:s')], array('id' => $singleRec->id));
 
                 if ($updated) {
                     success($this->lang->line('update_success'));

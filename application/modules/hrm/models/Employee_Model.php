@@ -36,6 +36,16 @@ class Employee_Model extends MY_Model {
         return $this->db->get()->row();
         
     }
+
+    public function get_last_stop_log($employee_id){
+
+        $this->db->select('E.*');
+        $this->db->from('stopping_log AS E');
+        $this->db->where('E.employee_id', $employee_id);
+        $this->db->order_by("id", "desc");
+        return $this->db->get()->row();
+
+    }
     
      function duplicate_check($email, $id = null ){           
            
