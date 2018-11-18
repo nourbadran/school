@@ -59,7 +59,7 @@ class Employee extends MY_Controller {
                     
                     $condition['employee_id'] = $obj->id;                    
                     $attendance = $this->employee->get_single('employee_attendances', $condition);
-                  
+                 
                     if(empty($attendance)){
                        $data['academic_year_id'] = $this->academic_year_id; 
                        $data['employee_id'] = $obj->id; 
@@ -103,11 +103,12 @@ class Employee extends MY_Controller {
             $config['allowed_types']        = '*';
 
             $this->load->library('upload', $config);
+
             if ( ! $this->upload->do_upload('file'))
             {
 
                 $error = array('error' => $this->upload->display_errors());
-
+                error($this->lang->line('operation_failed'));
                 $this->load->view('employee/import', $error);
             }
             else
@@ -120,20 +121,62 @@ class Employee extends MY_Controller {
                 {
                     $highestRow = $worksheet->getHighestRow();
                     $highestColumn = $worksheet->getHighestColumn();
-                    for($row=2; $row<=$highestRow; $row++)
+                    $emp_id0 = 0;//default value
+                    $data0 = array();
+                    for($row=1; $row<=$highestRow; $row++)
                     {
-                        $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
-                            NULL,
-                            TRUE,
-                            FALSE);
-                        //echo $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                        var_dump($rowData);
+                        $emp_id = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                        $date = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                        $dateValue = 'P' ; //By default
+                        $isAbsent = $worksheet->getCellByColumnAndRow(15, $row)->getValue();
+                        $isLate = $worksheet->getCellByColumnAndRow(13, $row)->getValue();
+                        if ( strtolower($isAbsent) == 'true' ) {
+                            $dateValue = 'A';
+                        }
+                        elseif( $isLate )
+                        {
+                            $dateValue = 'L';
+                        }
+                        $dayNumber = 1;
+                        $month = 1;
+                        $year = 1;
+                        $ar = explode('/', $date);
+                        if (count($ar)==3) {
+                            $dayNumber = (int)$ar[0];
+                            $month = (int)$ar[1];
+                            $year = (int)$ar[2];
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                        if ($emp_id0 != $emp_id || $emp_id0 == 0 ) {
+                            if ($emp_id0 > 0) {
+                                $this->employee->insert('employee_attendances', $data0);
+                            }
+                            $data0 = array();
+                            $emp_id0 = $emp_id;
+                            //after save
+                            $data0['academic_year_id'] = $this->academic_year_id; 
+                            $data0['employee_id'] = $emp_id; 
+                            $data0['school_id'] =  $this->session->userdata('school_id');; 
+                            $data0['month'] = $month; 
+                            $data0['year'] = $year; 
+                            $data0['status'] = 1;
+                            $data0['created_at'] = date('Y-m-d H:i:s');
+                            $data0['created_by'] = logged_in_user_id();
+                            $data0['day_'.$dayNumber] = $dateValue; 
+                        }
+                        else
+                        {
+                            $data0['day_'.$dayNumber] = $dateValue; 
+                        }
                     }
 
                 }
-                die();
 
             }
+            success($this->lang->line('operation_done_successfully'));
             $this->layout->view('employee/index', $this->data);
         }
 
@@ -141,6 +184,69 @@ class Employee extends MY_Controller {
         $this->layout->view('employee/import', $this->data);
     }
 
+    public function export($date='',$school_id='')
+    {
+        $date = $this->input->get('date', TRUE);
+        $school_id = $this->input->get('school_id', TRUE);
+        // create file name
+        $fileName = 'data-'.time().'.xlsx';  
+
+        $employees = $this->employee->get_employee_list($school_id);   
+        $month      = date('m', strtotime($date));
+        $year       = date('Y', strtotime($date));       
+        $day        = date('d', strtotime($date));  
+        $result = array();
+        $i=0;
+        foreach( $employees as $e )
+        {
+            $attendance = get_employee_attendance($e->id, $school_id, $this->academic_year_id, $year, $month, $day );
+            if ($attendance == 'A') {
+                $attendance =  $this->lang->line('absent');
+            }
+            if ($attendance == 'P') {
+                $attendance =  $this->lang->line('present');
+            }
+            if ($attendance == 'L') {
+                $attendance =  $this->lang->line('late');
+            }
+            $r = array();
+            $r['sl_no'] = ++$i;
+            $r['name'] = $e->name;
+            $r['designation'] = $e->designtion;
+            $r['phone'] = $e->phone;
+            $r['email'] = $e->email;
+            $r['attendance'] =$attendance;
+            $result[] = $r;
+        }
+        
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', $this->lang->line('sl_no'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1',$this->lang->line('name'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', $this->lang->line('designation'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', $this->lang->line('phone'));
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', $this->lang->line('email'));  
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', $this->lang->line('date'));  
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', $this->lang->line('attendance'));        
+        // set Row
+        $rowCount = 2;
+        foreach ($result as $element) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $element['sl_no']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $element['name']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $element['designation']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $element['phone']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $element['email']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $date);
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $element['attendance']);
+            $rowCount++;
+        }
+        $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+        $objWriter->save($fileName);
+        // download file
+        header("Content-Type: application/vnd.ms-excel");
+        redirect(site_url().$fileName);     
+    }
  
 
     /*****************Function update_single_attendance**********************************

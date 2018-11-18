@@ -595,3 +595,9 @@ $lang['rights'] = "Rights";
 $lang['conditions of resuming'] = "Conditions of resuming";
 $lang['stops'] = "Stops";
 $lang['Date of stopping'] = "Date of stopping";
+$lang['export'] = "Export";
+$lang['attendance'] = "Attendance";
+$lang['absent'] = "Absent";
+$lang['present'] = "Present";
+$lang['late'] = "Late";
+

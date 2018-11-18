@@ -57,6 +57,9 @@
            <?php } ?>
             
             <div class="x_content">
+              <?php  if (isset($employees) && !empty($employees)) { ?> 
+                <a class="pull-right btn btn-primary btn-xs" href="<?php echo site_url()?>attendance/employee/export?date=<?php echo $date;?>&school_id=<?php echo $school_id;?>"><i class="fa fa-file-excel-o"></i> <?php echo $this->lang->line('export'); ?></a>
+                <?php } ?>
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -152,83 +155,7 @@
                $('.absent').prop('checked', false);
            }           
        });
-       
-       
-       $('.fn_single_attendnce').click(function(){
-           
-          var status     = $(this).prop('checked') ? $(this).val() : '';
-          var employee_id = $(this).prop('checked') ? $(this).attr('itemid') : '';
-          var school_id   = $('#school_id').val();
-          var class_id   = $('#class_id').val();
-          var section_id = $('#section_id').val();
-          var date       = $('#date').val();
-          
-          $.ajax({       
-            type   : "POST",
-            url    : "<?php echo site_url('attendance/employee/update_single_attendance'); ?>",
-            data   : {school_id:school_id, status : status , employee_id: employee_id, class_id:class_id, section_id:section_id, date:date},               
-            async  : false,
-            success: function(response){ 
-               
-                if(response){
-                     toastr.success('<?php echo $this->lang->line('update_success'); ?>');  
-                }else{
-                     toastr.error('<?php echo $this->lang->line('update_failed'); ?>');  
-                }
-                toastr.options = {
-                "closeButton": true,               
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "showDuration": "400",
-                "hideDuration": "400",
-                "timeOut": "5000",              
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-              }
-            }
-        }); 
-                      
-       });
-       
-         $('.fn_all_attendnce').click(function(){
-           
-          var status     = $(this).prop('checked') ? $(this).val() : '';         
-          var school_id   = $('#school_id').val();
-          var class_id   = $('#class_id').val();
-          var section_id = $('#section_id').val();
-          var date       = $('#date').val();
-          
-          $.ajax({       
-            type   : "POST",
-            url    : "<?php echo site_url('attendance/employee/update_all_attendance'); ?>",
-            data   : { school_id:school_id, status : status , class_id:class_id, section_id:section_id, date:date},               
-            async  : false,
-            success: function(response){ 
-                if(response){
-                     toastr.success('<?php echo $this->lang->line('update_success'); ?>');  
-                }else{
-                     toastr.error('<?php echo $this->lang->line('update_failed'); ?>');  
-                }
-                toastr.options = {
-                "closeButton": true,               
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "showDuration": "400",
-                "hideDuration": "400",
-                "timeOut": "5000",              
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-              }
-            }
-        }); 
-                      
-       });
+
   });
   $("#employee").validate(); 
 </script>
