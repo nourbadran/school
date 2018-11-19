@@ -104,16 +104,16 @@
                                                     <a href="<?php echo site_url('hrm/employee/edit/'.$obj->id); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('edit'); ?> </a><br/>
                                                 <?php } ?> 
                                                 <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status == 1 ){ /* stop button */?> 
-                                                    <a href="<?php echo site_url('hrm/employee/stop/'.$obj->id); ?>" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('stop'); ?> </a><br/>
+                                                    <a href="<?php echo site_url('hrm/employee/stop/'.$obj->id); ?>" class="btn btn-danger btn-xs" onclick="javascript: return confirm('<?php echo $this->lang->line('confirm_alert'); ?>');"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('stop'); ?> </a><br/>
                                                 <?php } ?> 
                                                 <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status == 2 ){ /* reactive button */?> 
-                                                    <a href="<?php echo site_url('hrm/employee/reactive/'.$obj->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('re_active'); ?> </a><br/>
+                                                    <a href="<?php echo site_url('hrm/employee/reactive/'.$obj->id); ?>" class="btn btn-success btn-xs" onclick="javascript: return confirm('<?php echo $this->lang->line('confirm_alert'); ?>');"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('re_active'); ?> </a><br/>
                                                 <?php } ?> 
                                                 <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status == 3 ){ /* reactive button */?> 
-                                                    <a href="<?php echo site_url('hrm/employee/resume/'.$obj->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('resume'); ?> </a><br/>
+                                                    <a href="<?php echo site_url('hrm/employee/resume/'.$obj->id); ?>" class="btn btn-success btn-xs" onclick="javascript: return confirm('<?php echo $this->lang->line('confirm_alert'); ?>');"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('resume'); ?> </a><br/>
                                                 <?php } ?> 
                                                 <?php if(has_permission(EDIT, 'hrm', 'employee') && $obj->status != 3 ){ /* reactive button */?> 
-                                                    <a href="<?php echo site_url('hrm/employee/retired/'.$obj->id); ?>" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('retired'); ?> </a><br/>
+                                                    <a href="<?php echo site_url('hrm/employee/retired/'.$obj->id); ?>" class="btn btn-danger btn-xs" onclick="javascript: return confirm('<?php echo $this->lang->line('confirm_alert'); ?>');"><i class="fa fa-pencil-square-o"></i> <?php echo $this->lang->line('retired'); ?> </a><br/>
                                                 <?php } ?> 
                                                 <?php if(has_permission(VIEW, 'hrm', 'employee')){ ?>
                                                     <a href="<?php echo site_url('hrm/employee/view/'.$obj->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> <?php echo $this->lang->line('view'); ?> </a><br/>
