@@ -72,10 +72,10 @@ class Department extends MY_Controller {
                 $insert_id = $this->dept->insert('departments', $data);
                 if ($insert_id) {
                     success($this->lang->line('insert_success'));
-                    redirect('academic/department/index/'.$data['class_id']);
+                    redirect('academic/department/index/');
                 } else {
                     error($this->lang->line('insert_failed'));
-                    redirect('academic/department/add/'.$data['class_id']);
+                    redirect('academic/department/add/');
                 }
             } else {
 
