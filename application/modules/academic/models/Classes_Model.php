@@ -11,9 +11,10 @@ class Classes_Model extends MY_Model {
     
      public function get_class_list(){
         
-        $this->db->select('C.*, S.school_name,E.name AS supervisor, T.name AS teacher,D.name AS department');
+        $this->db->select('C.*, S.school_name,E.name AS supervisor,CT.name AS class_type, T.name AS teacher,D.name AS department');
         $this->db->from('classes AS C');
         $this->db->join('teachers AS T', 'T.id = C.teacher_id', 'left');
+        $this->db->join('class_types AS CT', 'CT.id = C.class_type_id', 'left');
         $this->db->join('schools AS S', 'S.id = C.school_id', 'left');
         //$this->db->join('supervisors AS VS', 'VS.id = C.supervisor_id', 'left');
 

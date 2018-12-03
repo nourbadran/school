@@ -784,3 +784,4 @@ $config['my_administrator']['sms']['14'] = '0|0|0|0';
 $config['my_academic']['stage']['14'] = '0|0|0|0';
 $config['my_academic']['department']['14'] = '0|0|0|0';
 $config['my_supervisor']['supervisor']['14'] = '0|0|0|0';
+$config['my_academic']['classtype']['2'] = '1|1|1|1';

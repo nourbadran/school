@@ -102,7 +102,11 @@
                     <?php if(has_permission(VIEW, 'academic', 'classes')){ ?>
                         <li><a href="<?php echo site_url('academic/classes/index'); ?>"><i class="fa fa-slideshare"></i> <?php echo $this->lang->line('class'); ?></a> </li> 
                     <?php } ?>
-                    
+
+                    <?php if(has_permission(VIEW, 'academic', 'classtype')){ ?>
+                        <li><a href="<?php echo site_url('academic/classtype/index'); ?>"><i class="fa fa-book"></i> <?php echo $this->lang->line('Class Types'); ?></a> </li>
+                    <?php } ?>
+
                     <?php if(has_permission(VIEW, 'academic', 'section')){ ?>
                         <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
                             <li><a  href="<?php echo site_url('academic/section/index/'); ?>"><i class="fa fa-bars"></i> <?php echo $this->lang->line('section'); ?> </a></li>

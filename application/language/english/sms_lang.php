@@ -600,4 +600,8 @@ $lang['attendance'] = "Attendance";
 $lang['absent'] = "Absent";
 $lang['present'] = "Present";
 $lang['late'] = "Late";
+$lang['Class Types'] = "Class Types";
+$lang['manage_class_type'] = "Manage Class Types";
+$lang['class types'] = "Class Types";
+$lang['type'] = "Type";
 
