@@ -60,7 +60,7 @@
                                             <?php } ?>
                                             <td><?php echo $obj->name; ?></td>
                                             <td><?php echo $obj->numeric_name; ?></td>
-                                            <td><?php echo $obj->type; ?></td>
+                                            <td><?php echo $obj->class_type; ?></td>
                                             <td><?php echo $obj->teacher; ?></td>
                                             <td><?php echo $obj->supervisor; ?></td>
                                             <td><?php echo $obj->department; ?></td>
@@ -110,12 +110,13 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class_id"><?php echo $this->lang->line('type'); ?> <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select  class="form-control col-md-7 col-xs-12 select2"  name="type"  id="add_type" required="required" >
-                                            <option value="">--<?php echo $this->lang->line('type'); ?>--</option> 
-                                            
-                                            <option value="arabic" >Arabic</option>
-                                            <option value="cambridge" >Cambridge</option>
-                                                                                        
+                                        <select  class="form-control col-md-7 col-xs-12 select2"  name="class_type_id"  id="add_type" required="required" >
+                                            <option value="">--<?php echo $this->lang->line('type'); ?>--</option>
+
+                                            <?php foreach($types as $obj ){ ?>
+                                                <option value="<?php echo $obj->id; ?>" <?php echo isset($post['class_type_id']) && $post['class_type_id'] == $obj->id ?  'selected="selected"' : ''; ?>><?php echo $obj->name; ?></option>
+                                            <?php } ?>
+
                                         </select>
                                         <div class="help-block"><?php echo form_error('class_id'); ?></div>
                                     </div>
@@ -245,12 +246,12 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class_id"><?php echo $this->lang->line('type'); ?> <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select  class="form-control col-md-7 col-xs-12 select2"  name="type"  id="add_type" required="required" >
-                                            <option value="">--<?php echo $this->lang->line('type'); ?>--</option> 
-                                            
-                                            <option value="arabic" <?php if($class->type == 'arabic'){ echo 'selected="selected"';} ?>>Arabic</option>
-                                            <option value="cambridge"<?php if($class->type == 'cambridge'){ echo 'selected="selected"';} ?> >Cambridge</option>
-                                                                                        
+                                        <select  class="form-control col-md-7 col-xs-12 select2"  name="class_type_id"  id="add_type" required="required" >
+                                            <option value="">--<?php echo $this->lang->line('type'); ?>--</option>
+
+                                            <?php foreach($types as $obj ){ ?>
+                                                <option value="<?php echo $obj->id; ?>" <?php if($class->class_type_id == $obj->id){ echo 'selected="selected"';} ?> ><?php echo $obj->name; ?></option>
+                                            <?php } ?>
                                         </select>
                                         <div class="help-block"><?php echo form_error('class_id'); ?></div>
                                     </div>
