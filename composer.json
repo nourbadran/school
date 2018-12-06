@@ -1,0 +1,5 @@
+{
+    "require": {
+        "ctechhindi/codeigniter-api": "dev-master"
+    }
+}

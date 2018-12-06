@@ -1,0 +1,66 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3e884f9d921e30bbc9d770c80407091d",
+    "packages": [
+        {
+            "name": "ctechhindi/codeigniter-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeevan15498/CodeIgniter-API-Controller.git",
+                "reference": "9943b8873ab0b4d97ccb969f452eee53eaffc568"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeevan15498/CodeIgniter-API-Controller/zipball/9943b8873ab0b4d97ccb969f452eee53eaffc568",
+                "reference": "9943b8873ab0b4d97ccb969f452eee53eaffc568",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Community",
+                    "homepage": "https://github.com/jeevan15498/CodeIgniter-API-Controller/graphs/contributors"
+                },
+                {
+                    "name": "C Tech Hindi",
+                    "email": "ctechhindi@gmail.com",
+                    "homepage": "https://github.com/jeevan15498",
+                    "role": "Author"
+                }
+            ],
+            "description": "CodeIgniter API Controller",
+            "homepage": "https://github.com/jeevan15498/CodeIgniter-API-Controller",
+            "keywords": [
+                "CodeIgniter Rest",
+                "CodeIgniter Rest Api",
+                "REST API",
+                "api",
+                "codeigniter",
+                "rest"
+            ],
+            "time": "2018-06-30T12:39:10+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "ctechhindi/codeigniter-api": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

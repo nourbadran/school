@@ -1,0 +1,50 @@
+[
+    {
+        "name": "ctechhindi/codeigniter-api",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jeevan15498/CodeIgniter-API-Controller.git",
+            "reference": "9943b8873ab0b4d97ccb969f452eee53eaffc568"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jeevan15498/CodeIgniter-API-Controller/zipball/9943b8873ab0b4d97ccb969f452eee53eaffc568",
+            "reference": "9943b8873ab0b4d97ccb969f452eee53eaffc568",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "time": "2018-06-30T12:39:10+00:00",
+        "type": "project",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Community",
+                "homepage": "https://github.com/jeevan15498/CodeIgniter-API-Controller/graphs/contributors"
+            },
+            {
+                "name": "C Tech Hindi",
+                "email": "ctechhindi@gmail.com",
+                "homepage": "https://github.com/jeevan15498",
+                "role": "Author"
+            }
+        ],
+        "description": "CodeIgniter API Controller",
+        "homepage": "https://github.com/jeevan15498/CodeIgniter-API-Controller",
+        "keywords": [
+            "CodeIgniter Rest",
+            "CodeIgniter Rest Api",
+            "REST API",
+            "api",
+            "codeigniter",
+            "rest"
+        ]
+    }
+]
