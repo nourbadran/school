@@ -62,7 +62,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dob"><?php echo $this->lang->line('month'); ?> <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input  class="form-control col-md-7 col-xs-12"  name="info_month"  id="info_month" value="<?php echo isset($_POST['info_month']) ?  date('m-Y', strtotime($_POST['info_month'])) : '' ?>" placeholder="<?php echo $this->lang->line('month'); ?>" required="required" type="text">
+                                        <input  class="form-control col-md-7 col-xs-12"  name="info_month"  id="info_month" value="<?php echo isset($_POST['info_month']) ? $_POST['info_month'] : '' ?>" placeholder="<?php echo $this->lang->line('month'); ?>" required="required" type="text">
                                         <div class="help-block"><?php echo form_error('info_month'); ?></div>
                                     </div>
                                 </div>

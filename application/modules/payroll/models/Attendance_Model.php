@@ -38,9 +38,9 @@ class Attendance_Model extends MY_Model {
         if($id){
             $this->db->where_not_in('id', $id);
         }
-        $this->db->where('salary_month', $salary_month);
-        $this->db->where('user_id', $user_id);
-        return $this->db->get('salary_payments')->num_rows();            
+        $this->db->where('info_month', $salary_month);
+        $this->db->where('employee_id', $user_id);
+        return $this->db->get('attendance_info')->num_rows();
     }
     
     public function get_payment_list($school_id, $user_id, $payment_to){

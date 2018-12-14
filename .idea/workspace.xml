@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71ae4dfe-2d81-4f99-9573-014c63efaffc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" afterPath="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" />
+      <change beforePath="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" afterPath="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" />
+      <change beforePath="$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php" afterPath="$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php" />
+      <change beforePath="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" afterPath="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,21 +18,31 @@
       <file leaf-file-name="sms_lang.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="577" column="23" lean-forward="false" selection-start-line="577" selection-start-column="7" selection-end-line="577" selection-end-column="23" />
+            <state relative-caret-position="185">
+              <caret line="429" column="20" lean-forward="false" selection-start-line="429" selection-start-column="7" selection-end-line="429" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Attendance.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Attendance.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="148" column="49" lean-forward="false" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
+            <state relative-caret-position="104">
+              <caret line="83" column="112" lean-forward="false" selection-start-line="83" selection-start-column="112" selection-end-line="83" selection-end-column="112" />
               <folding>
-                <marker date="1544811277977" expanded="true" signature="2986:2997" ph="..." />
+                <marker date="1544812964210" expanded="true" signature="2916:2927" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Attendance_Model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="42" column="46" lean-forward="false" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -38,33 +50,18 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="153" column="25" lean-forward="false" selection-start-line="153" selection-start-column="25" selection-end-line="153" selection-end-column="25" />
+            <state relative-caret-position="295">
+              <caret line="64" column="171" lean-forward="false" selection-start-line="64" selection-start-column="171" selection-end-line="64" selection-end-column="171" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Employee.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/hrm/controllers/Employee.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="500" column="8" lean-forward="false" selection-start-line="500" selection-start-column="8" selection-end-line="500" selection-end-column="87" />
-              <folding>
-                <marker date="1543776557214" expanded="true" signature="11898:11909" ph="..." />
-                <marker date="1543776557214" expanded="true" signature="14394:14405" ph="..." />
-                <marker date="1543776557214" expanded="true" signature="15257:15268" ph="..." />
-                <marker date="1543776557214" expanded="true" signature="15913:15924" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Payment.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Payment.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+            <state relative-caret-position="304">
+              <caret line="130" column="16" lean-forward="false" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="45" />
               <folding>
                 <marker date="1544811829836" expanded="true" signature="10110:10121" ph="..." />
               </folding>
@@ -83,15 +80,17 @@
       <find>retired_employee</find>
       <find>retired</find>
       <find>edit_dob</find>
-      <find>_prepare_payment_validation</find>
       <find>option</find>
       <find>dation(</find>
       <find>_get_posted_payment_data</find>
       <find>add_salary_month</find>
-      <find>opera</find>
       <find>salary_month</find>
-      <find>_get_posted</find>
       <find>add()</find>
+      <find>opera</find>
+      <find>salary_m</find>
+      <find>_prepare_payment_validation</find>
+      <find>already_exist</find>
+      <find>_get_posted</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\school\application\modules</dir>
@@ -112,14 +111,14 @@
         <option value="$PROJECT_DIR$/application/modules/academic/models/Classes_Model.php" />
         <option value="$PROJECT_DIR$/application/modules/academic/views/class/index.php" />
         <option value="$PROJECT_DIR$/application/modules/academic/controllers/Classes.php" />
-        <option value="$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php" />
         <option value="$PROJECT_DIR$/application/views/layout/left-side.php" />
         <option value="$PROJECT_DIR$/application/language/english/sms_lang.php" />
         <option value="$PROJECT_DIR$/application/sql_files/2018-12-14.sql" />
         <option value="$PROJECT_DIR$/application/modules/payroll/views/payment/index.php" />
-        <option value="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" />
-        <option value="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" />
         <option value="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" />
+        <option value="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" />
+        <option value="$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php" />
+        <option value="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" />
       </list>
     </option>
   </component>
@@ -183,6 +182,14 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="payroll" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="school" type="b2602c69:ProjectViewProjectNode" />
+              <item name="school" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="payroll" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -237,12 +244,12 @@
       <workItem from="1543777579409" duration="1876000" />
       <workItem from="1543862591136" duration="4541000" />
       <workItem from="1544728686563" duration="445000" />
-      <workItem from="1544799653311" duration="12331000" />
+      <workItem from="1544799653311" duration="13354000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21098000" />
+    <option name="totallyTimeSpent" value="22121000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -492,22 +499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="577" column="23" lean-forward="false" selection-start-line="577" selection-start-column="7" selection-end-line="577" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/academic/controllers/Classes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
@@ -526,10 +517,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/payment/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2531">
+          <caret line="628" column="0" lean-forward="false" selection-start-line="628" selection-start-column="0" selection-end-line="628" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/hrm/controllers/Employee.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="500" column="8" lean-forward="false" selection-start-line="500" selection-start-column="8" selection-end-line="500" selection-end-column="87" />
+        <state relative-caret-position="41">
+          <caret line="276" column="21" lean-forward="false" selection-start-line="276" selection-start-column="21" selection-end-line="276" selection-end-column="21" />
           <folding>
             <marker date="1543776557214" expanded="true" signature="11898:11909" ph="..." />
             <marker date="1543776557214" expanded="true" signature="14394:14405" ph="..." />
@@ -539,38 +538,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/payment/index.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2531">
-          <caret line="628" column="0" lean-forward="false" selection-start-line="628" selection-start-column="0" selection-end-line="628" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="148" column="49" lean-forward="false" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
+        <state relative-caret-position="304">
+          <caret line="130" column="16" lean-forward="false" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="45" />
           <folding>
-            <marker date="1544811277977" expanded="true" signature="2986:2997" ph="..." />
+            <marker date="1544811829836" expanded="true" signature="10110:10121" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="153" column="25" lean-forward="false" selection-start-line="153" selection-start-column="25" selection-end-line="153" selection-end-column="25" />
+        <state relative-caret-position="295">
+          <caret line="64" column="171" lean-forward="false" selection-start-line="64" selection-start-column="171" selection-end-line="64" selection-end-column="171" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
+    <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+        <state relative-caret-position="185">
+          <caret line="429" column="20" lean-forward="false" selection-start-line="429" selection-start-column="7" selection-end-line="429" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="42" column="46" lean-forward="false" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="83" column="112" lean-forward="false" selection-start-line="83" selection-start-column="112" selection-end-line="83" selection-end-column="112" />
           <folding>
-            <marker date="1544811829836" expanded="true" signature="10110:10121" ph="..." />
+            <marker date="1544812964210" expanded="true" signature="2916:2927" ph="..." />
           </folding>
         </state>
       </provider>

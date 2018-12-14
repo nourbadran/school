@@ -54,9 +54,7 @@ class Attendance extends MY_Controller {
                     redirect('payroll/attendance/add/');
                 }
             } else {
-
-                error($this->lang->line('operation_failed'));
-                redirect('payroll/attendance/add/');
+                $this->data['post'] = $_POST;
             }
         }
 
@@ -83,7 +81,7 @@ class Attendance extends MY_Controller {
         $this->form_validation->set_error_delimiters('<div class="error-message" style="color: red;">', '</div>');
         
         $this->form_validation->set_rules('employee_id', $this->lang->line('employee'), 'trim|required');
-        $this->form_validation->set_rules('info_month', $this->lang->line('month'), 'trim|required|callback_salary_month');
+        $this->form_validation->set_rules('info_month', $this->lang->line('month'), 'trim|required|callback_info_month');
         $this->form_validation->set_rules('working_days', $this->lang->line('working_days'), 'trim|required');
         $this->form_validation->set_rules('days_off', $this->lang->line('days_off'), 'trim|required');
         $this->form_validation->set_rules('extra_days_off', $this->lang->line('extra_days_off'), 'trim|required');
@@ -99,21 +97,21 @@ class Attendance extends MY_Controller {
      * @param           : null
      * @return          : boolean true/false 
      * ********************************************************** */  
-   public function salary_month()
+   public function info_month()
    {             
       if($this->input->post('id') == '')
       {   
-          $payment = $this->payment->duplicate_check($this->input->post('salary_month'), $this->input->post('user_id')); 
+          $payment = $this->payment->duplicate_check($this->input->post('info_month'), $this->input->post('employee_id'));
           if($payment){
-                $this->form_validation->set_message('salary_month',  $this->lang->line('already_exist'));         
+                $this->form_validation->set_message('info_month',  $this->lang->line('already_exist'));
                 return FALSE;
           } else {
               return TRUE;
           }          
       }else if($this->input->post('id') != ''){   
-         $payment = $this->payment->duplicate_check($this->input->post('salary_month'), $this->input->post('user_id'), $this->input->post('id')); 
+         $payment = $this->payment->duplicate_check($this->input->post('info_month'), $this->input->post('employee_id'), $this->input->post('id'));
           if($payment){
-                $this->form_validation->set_message('salary_month', $this->lang->line('already_exist'));         
+                $this->form_validation->set_message('info_month', $this->lang->line('already_exist'));
                 return FALSE;
           } else {
               return TRUE;
