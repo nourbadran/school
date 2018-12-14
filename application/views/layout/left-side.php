@@ -448,9 +448,13 @@
                                 <?php if(has_permission(VIEW, 'payroll', 'payment')){ ?>  
                                     <li><a href="<?php echo site_url('payroll/payment/index'); ?>"> <?php echo $this->lang->line('salary'); ?> <?php echo $this->lang->line('payment'); ?></a></li>
                                 <?php } ?>
+                                <?php if(has_permission(VIEW, 'payroll', 'attinfo')){ ?>
+                                    <li><a href="<?php echo site_url('payroll/attendance/add'); ?>"> <?php echo $this->lang->line('attendance'); ?> <?php echo $this->lang->line('info'); ?></a></li>
+                                <?php } ?>
                                 <?php if(has_permission(VIEW, 'payroll', 'payment')){ ?>  
                                     <li><a href="<?php echo site_url('payroll/history/index'); ?>"> <?php echo $this->lang->line('payment'); ?> <?php echo $this->lang->line('history'); ?></a></li>
                                 <?php } ?>
+
                             </ul>
                         </li>   
                     <?php } ?>    

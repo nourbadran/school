@@ -604,4 +604,13 @@ $lang['Class Types'] = "Class Types";
 $lang['manage_class_type'] = "Manage Class Types";
 $lang['class types'] = "Class Types";
 $lang['type'] = "Type";
+$lang['attendance'] = "Attendance";
+$lang['info'] = "Info";
+$lang['manage_attendance_info'] = "Manage Attendance Info";
+$lang['working_days'] = "Working Days";
+$lang['days_off'] = "Days Off";
+$lang['extra_days_off'] = "Extra Days Off";
+$lang['day_number'] = "Day Number";
+$lang['day_off'] = "Add day off";
+$lang['day'] = "Day";
 

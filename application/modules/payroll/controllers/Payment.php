@@ -100,7 +100,11 @@ class Payment extends MY_Controller {
             $this->_prepare_payment_validation();
             if ($this->form_validation->run() === TRUE) {
                 $data = $this->_get_posted_payment_data();
-
+                $attendanceInfo  = $this->payment->get_single('attendance_info', array('employee_id' => $data['user_id'],'info_month' => $data['salary_month']));
+                if ($attendanceInfo)
+                {
+                    $data['net_salary'] -= $attendanceInfo->total_discount;
+                }
                 $insert_id = $this->payment->insert('salary_payments', $data);
                 if ($insert_id) {
                     success($this->lang->line('insert_success'));
