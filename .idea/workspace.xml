@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71ae4dfe-2d81-4f99-9573-014c63efaffc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/config/custom.php" afterPath="$PROJECT_DIR$/application/config/custom.php" />
-      <change beforePath="$PROJECT_DIR$/application/language/english/sms_lang.php" afterPath="$PROJECT_DIR$/application/language/english/sms_lang.php" />
       <change beforePath="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" afterPath="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" />
-      <change beforePath="$PROJECT_DIR$/application/views/layout/left-side.php" afterPath="$PROJECT_DIR$/application/views/layout/left-side.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,10 +63,10 @@
       <file leaf-file-name="Payment.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="105" column="74" lean-forward="false" selection-start-line="105" selection-start-column="74" selection-end-line="105" selection-end-column="74" />
+            <state relative-caret-position="406">
+              <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
               <folding>
-                <marker date="1544811627793" expanded="true" signature="10032:10043" ph="..." />
+                <marker date="1544811829836" expanded="true" signature="10110:10121" ph="..." />
               </folding>
             </state>
           </provider>
@@ -241,12 +237,12 @@
       <workItem from="1543777579409" duration="1876000" />
       <workItem from="1543862591136" duration="4541000" />
       <workItem from="1544728686563" duration="445000" />
-      <workItem from="1544799653311" duration="11804000" />
+      <workItem from="1544799653311" duration="12331000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20571000" />
+    <option name="totallyTimeSpent" value="21098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -571,10 +567,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="105" column="74" lean-forward="false" selection-start-line="105" selection-start-column="74" selection-end-line="105" selection-end-column="74" />
+        <state relative-caret-position="406">
+          <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
           <folding>
-            <marker date="1544811627793" expanded="true" signature="10032:10043" ph="..." />
+            <marker date="1544811829836" expanded="true" signature="10110:10121" ph="..." />
           </folding>
         </state>
       </provider>

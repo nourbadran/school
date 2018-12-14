@@ -104,6 +104,7 @@ class Payment extends MY_Controller {
                 if ($attendanceInfo)
                 {
                     $data['net_salary'] -= $attendanceInfo->total_discount;
+                    $data['gross_salary'] -= $attendanceInfo->total_discount;
                 }
                 $insert_id = $this->payment->insert('salary_payments', $data);
                 if ($insert_id) {
