@@ -45,27 +45,7 @@
                                <?php echo form_open(site_url('payroll/attendance/add'), array('name' => 'add', 'id' => 'add', 'class'=>'form-horizontal form-label-left'), ''); ?>
                                
                                  <?php $this->load->view('layout/school_list_form'); ?>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="exam_id"><?php echo $this->lang->line('employee'); ?> <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select  class="form-control col-md-7 col-xs-12"  name="employee_id" id="add_employee_id" required="required">
-                                            <option value="">--<?php echo $this->lang->line('select'); ?>--</option>
-                                            <?php foreach($employees as $obj ){ ?>
-                                                <option value="<?php echo $obj->user_id; ?>" <?php echo isset($post['employee_id']) && $post['employee_id'] == $obj->user_id ?  'selected="selected"' : ''; ?>><?php echo $obj->name; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="help-block"><?php echo form_error('employee_id'); ?></div>
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dob"><?php echo $this->lang->line('month'); ?> <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input  class="form-control col-md-7 col-xs-12"  name="info_month"  id="info_month" value="<?php echo isset($_POST['info_month']) ? $_POST['info_month'] : '' ?>" placeholder="<?php echo $this->lang->line('month'); ?>" required="required" type="text">
-                                        <div class="help-block"><?php echo form_error('info_month'); ?></div>
-                                    </div>
-                                </div>
+
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="working_days"><?php echo $this->lang->line('working_days'); ?> <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -146,15 +126,10 @@
         </div>
     </div>
 </div>
-<link href="<?php echo VENDOR_URL; ?>datepicker/datepicker.css" rel="stylesheet">
-<script src="<?php echo VENDOR_URL; ?>datepicker/datepicker.js"></script>
+
 <!-- datatable with buttons -->
  <script type="text/javascript">
-     $('#info_month').datepicker({
-         format: "mm-yyyy",
-         startView: "months",
-         minViewMode: "months"
-     });
+
         $(document).ready(function() {
 
             $('#AddDayOff').click(function(){

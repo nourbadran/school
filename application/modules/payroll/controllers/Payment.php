@@ -100,12 +100,7 @@ class Payment extends MY_Controller {
             $this->_prepare_payment_validation();
             if ($this->form_validation->run() === TRUE) {
                 $data = $this->_get_posted_payment_data();
-                $attendanceInfo  = $this->payment->get_single('attendance_info', array('employee_id' => $data['user_id'],'info_month' => $data['salary_month']));
-                if ($attendanceInfo)
-                {
-                    $data['net_salary'] -= $attendanceInfo->total_discount;
-                    $data['gross_salary'] -= $attendanceInfo->total_discount;
-                }
+                $this->checkDays($data);
                 $insert_id = $this->payment->insert('salary_payments', $data);
                 if ($insert_id) {
                     success($this->lang->line('insert_success'));
@@ -139,7 +134,61 @@ class Payment extends MY_Controller {
         $this->layout->view('payment/index', $this->data);
     }
 
-    
+    public function checkDays(&$data)
+    {
+
+        $employee = $this->payment->get_single('employees',array('user_id'=>$data['user_id']));
+        if($employee)
+        {
+            $salary_month = $data['salary_month'];
+            $salary_month_ar = explode('-',$salary_month);
+            if (count($salary_month_ar) !=2)
+                return;
+            $emp_att = $this->payment->get_single('employee_attendances',array('employee_id'=>$employee->id,'month'=>$salary_month_ar[0],'year'=>$salary_month_ar[1]));
+            if ($emp_att)
+            {
+                $p_days = 0;
+                $a_days = 0;
+                $l_days = 0;
+                $array = json_decode(json_encode($emp_att), true);
+                for( $i = 1 ; $i < 32 ; $i++ )
+                {
+                    if ($array['day_'.$i]=='P')
+                        $p_days++;
+                    if ($array['day_'.$i]=='L')
+                        $l_days++;
+                    if ($array['day_'.$i]=='A')
+                        $a_days++;
+                }
+
+                $att_infos = $this->payment->get_list('attendance_info',array(),null,null,0,'id','desc');
+                if ($att_infos && count($att_infos) > 0)
+                {
+                    $att_info = $att_infos[0];
+                    
+                    if ($a_days > $att_info->days_off)
+                    {
+                        $diff = $a_days - $att_info->days_off;
+                        $days_off = $this->payment->get_list('discount_info',array('attendance_info_id'=>$att_info->id));
+                        $discount = 0;
+                        $counter = 0;
+                        while($diff>0) {
+                            $counter++;
+                            $diff--;
+                            foreach ($days_off as $day_off)
+                            {
+                                if ($day_off->day_number==$counter)
+                                    $discount += $day_off->price;
+                            }
+                        }
+
+                        $data['gross_salary'] -= $discount;
+                        $data['net_salary'] -= $discount;
+                    }
+                }
+            }
+        }
+    }
         
     /*****************Function edit**********************************
      * @type            : Function

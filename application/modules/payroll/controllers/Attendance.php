@@ -46,7 +46,11 @@ class Attendance extends MY_Controller {
 
                 $insert_id = $this->payment->insert('attendance_info', $data);
                 if ($insert_id) {
-
+                    $data = $this->_get_posted_discount_days_data($insert_id);
+                    foreach($data as $d)
+                    {
+                        $this->payment->insert('discount_info', $d);
+                    }
                     success($this->lang->line('insert_success'));
                     redirect('payroll/attendance/add/');
                 } else {
@@ -57,9 +61,6 @@ class Attendance extends MY_Controller {
                 $this->data['post'] = $_POST;
             }
         }
-
-
-        $this->data['employees'] = $this->payment->get_list('employees', array('status'=> 1, ));
 
         $this->data['add'] = TRUE;
         $this->layout->title($this->lang->line('add'). ' ' . $this->lang->line('attendance') .  $this->lang->line('info') . ' | ' . SMS);
@@ -79,45 +80,14 @@ class Attendance extends MY_Controller {
     private function _prepare_dayoff_validation() {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error-message" style="color: red;">', '</div>');
-        
-        $this->form_validation->set_rules('employee_id', $this->lang->line('employee'), 'trim|required');
-        $this->form_validation->set_rules('info_month', $this->lang->line('month'), 'trim|required|callback_info_month');
+
         $this->form_validation->set_rules('working_days', $this->lang->line('working_days'), 'trim|required');
         $this->form_validation->set_rules('days_off', $this->lang->line('days_off'), 'trim|required');
         $this->form_validation->set_rules('extra_days_off', $this->lang->line('extra_days_off'), 'trim|required');
-        $this->form_validation->set_rules('total_discount', $this->lang->line('note'), 'trim');
     }
     
     
-     /*****************Function salary_month**********************************
-     * @type            : Function
-     * @function name   : salary_month
-     * @description     : Unique check for "Salary payment" data/value                  
-     *                       
-     * @param           : null
-     * @return          : boolean true/false 
-     * ********************************************************** */  
-   public function info_month()
-   {             
-      if($this->input->post('id') == '')
-      {   
-          $payment = $this->payment->duplicate_check($this->input->post('info_month'), $this->input->post('employee_id'));
-          if($payment){
-                $this->form_validation->set_message('info_month',  $this->lang->line('already_exist'));
-                return FALSE;
-          } else {
-              return TRUE;
-          }          
-      }else if($this->input->post('id') != ''){   
-         $payment = $this->payment->duplicate_check($this->input->post('info_month'), $this->input->post('employee_id'), $this->input->post('id'));
-          if($payment){
-                $this->form_validation->set_message('info_month', $this->lang->line('already_exist'));
-                return FALSE;
-          } else {
-              return TRUE;
-          }
-      }   
-   }
+
 
 
      /*****************Function _get_posted_payment_data**********************************
@@ -131,20 +101,12 @@ class Attendance extends MY_Controller {
     private function _get_posted_dayoff_data() {
 
         $items = array();
-        $items[] = 'employee_id';
+
         $items[] = 'working_days';
         $items[] = 'days_off';
         $items[] = 'extra_days_off';
-        $items[] = 'info_month';
-        //$data['dayoffs'] = $this->input->post('dayoffs');
         $data = elements($items, $_POST);
-        $ar = $this->input->post('dayoffs');
-        $totalDiscount = 0;
-        foreach( $ar as $a )
-        {
-            $totalDiscount += $a['price'];
-        }
-        $data['total_discount'] = $totalDiscount;
+
         if ($this->input->post('id')) {
             
             $data['modified_at'] = date('Y-m-d H:i:s');
@@ -157,6 +119,24 @@ class Attendance extends MY_Controller {
 
         }
 
+        return $data;
+    }
+
+    private function _get_posted_discount_days_data($attendance_info_id) {
+
+        $data = array();
+
+        $ar = $this->input->post('dayoffs');
+        foreach( $ar as $a )
+        {
+            $d = array();
+            $d['day_number'] = $a['day'];
+            $d['price'] = $a['price'];
+            $d['created_at'] = date('Y-m-d H:i:s');
+            $d['created_by'] = logged_in_user_id();
+            $d['attendance_info_id'] = $attendance_info_id;
+            $data[] = $d;
+        }
         return $data;
     }
 
