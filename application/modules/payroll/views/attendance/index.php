@@ -174,7 +174,7 @@
                     var row_column = $('#row_column').val();
 
                     var cell = "" +
-                        "<tr class=\"removemake" + num +"\">" +
+                        "<tr class=\"removemake" + row_column +"\">" +
                         "                                                    <td>" +
                         "                                                        <input type=\"hidden\" value=\"" + num +"\" name=\"dayoffs["+row_column+"][day]\" />\n" +
                         "                                                        "+num +
