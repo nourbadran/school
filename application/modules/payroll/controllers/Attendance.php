@@ -35,9 +35,6 @@ class Attendance extends MY_Controller {
      * @return          : null 
      * ********************************************************** */
     public function add() {
-        
-
-        
         if ($_POST) {
 
             $this->_prepare_dayoff_validation();
@@ -61,7 +58,18 @@ class Attendance extends MY_Controller {
                 $this->data['post'] = $_POST;
             }
         }
-
+        $att_infos = $this->payment->get_list('attendance_info',array(),null,null,0,'id','desc');
+        if ($att_infos && count($att_infos) > 0) {
+            $att_info = $att_infos[0];
+            $this->data['post'] = [
+                'days_off' => $att_info->days_off,
+                'working_days' => $att_info->working_days,
+                'extra_days_off' => $att_info->extra_days_off,
+            ];
+            $this->data['dataFound'] = true;
+            $discount_infos = $this->payment->get_list('discount_info',array('attendance_info_id'=>$att_info->id),null,null,0,'id','asc');
+            $this->data['discount_infos'] = $discount_infos;
+        }
         $this->data['add'] = TRUE;
         $this->layout->title($this->lang->line('add'). ' ' . $this->lang->line('attendance') .  $this->lang->line('info') . ' | ' . SMS);
         $this->layout->view('attendance/index', $this->data);

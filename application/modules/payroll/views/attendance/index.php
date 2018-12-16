@@ -67,7 +67,7 @@
                                         <div class="help-block"><?php echo form_error('extra_days_off'); ?></div>
                                     </div>
                                 </div>
-                                <input type="hidden" id="row_column"  value="0" />
+                                <input type="hidden" id="row_column"  value="<?php echo ( ( isset($discount_infos)  ) ? count($discount_infos) : 0 ) ?>" />
                                 <div class="row" style="width: 75%;margin-left: 200px">
                                     <div class="col-md-12">
                                         <div class="col-md-4">
@@ -104,7 +104,29 @@
                                             </tr>
                                             </thead>
                                             <tbody id="addDayOffTableBody">
-
+                                                <?php
+                                                    if (isset($discount_infos))
+                                                    {
+                                                        $count = 0;
+                                                        foreach( $discount_infos as $discount_info )
+                                                        {
+                                                            echo '<tr class="removemake'.$count.'">
+                                                                    <td>
+                                                                        <input type="hidden" value="'.$discount_info->day_number.'" name="dayoffs['.$count.'][day]" />
+                                                                                '.$discount_info->day_number.'
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="hidden" value="'.$discount_info->price.'" name="dayoffs['.$count.'][price]" />
+                                                                                '.$discount_info->price.'
+                                                                    </td>
+                                                                    <td>
+                                                                        <i class="fa fa-trash" id="btndelete" data-id="'.$count.'" style="color: red; cursor: pointer; font-size: 28px;"></i>
+                                                                    </td>
+                                                                  </tr>';
+                                                            $count++;
+                                                        }
+                                                    }
+                                                ?>
                                             </tbody>
 
                                         </table>
@@ -114,7 +136,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
                                         <a href="<?php echo site_url('payroll/attendance/add'); ?>" class="btn btn-primary"><?php echo $this->lang->line('cancel'); ?></a>
-                                        <button id="send" type="submit" class="btn btn-success"><?php echo $this->lang->line('submit'); ?></button>
+                                        <button id="send" type="submit" class="btn btn-success"><?php echo (isset($dataFound) && $dataFound ? $this->lang->line('save') : $this->lang->line('submit')); ?></button>
                                     </div>
                                 </div>
                                 <?php echo form_close(); ?>
@@ -131,7 +153,10 @@
  <script type="text/javascript">
 
         $(document).ready(function() {
-
+            $("#addDayOffTableBody").on('click', '#btndelete', function () {
+                var id  = $(this).attr('data-id');
+                $('.removemake'+id).remove();
+            });
             $('#AddDayOff').click(function(){
                 var num = $('#extra_days_off_num').val();
                 var price = $('#extra_days_off_price').val();
@@ -149,7 +174,7 @@
                     var row_column = $('#row_column').val();
 
                     var cell = "" +
-                        "<tr>" +
+                        "<tr class=\"removemake" + num +"\">" +
                         "                                                    <td>" +
                         "                                                        <input type=\"hidden\" value=\"" + num +"\" name=\"dayoffs["+row_column+"][day]\" />\n" +
                         "                                                        "+num +
@@ -158,6 +183,9 @@
                         "                                                        <input type=\"hidden\" value=\"" + price +"\" name=\"dayoffs["+row_column+"][price]\" />\n" +
                         "                                                        "+price +
                         "                                                    </td>" +
+                        "                                                    <td>\n" +
+                        "                                                        <i class=\"fa fa-trash\" id=\"btndelete\" data-id=\""+row_column+"\" style=\"color: red; cursor: pointer; font-size: 28px;\"></i>\n" +
+                        "                                                    </td>"
                         "                                                </tr>";
                     $('#addDayOffTableBody').append(cell);
                     row_column++;

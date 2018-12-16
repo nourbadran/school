@@ -165,7 +165,7 @@ class Payment extends MY_Controller {
                 if ($att_infos && count($att_infos) > 0)
                 {
                     $att_info = $att_infos[0];
-                    
+
                     if ($a_days > $att_info->days_off)
                     {
                         $diff = $a_days - $att_info->days_off;

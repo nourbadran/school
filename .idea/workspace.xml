@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71ae4dfe-2d81-4f99-9573-014c63efaffc" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/school.iml" afterPath="$PROJECT_DIR$/.idea/school.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/language/english/sms_lang.php" afterPath="$PROJECT_DIR$/application/language/english/sms_lang.php" />
       <change beforePath="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" afterPath="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" />
       <change beforePath="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" afterPath="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" />
       <change beforePath="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" afterPath="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" />
-      <change beforePath="$PROJECT_DIR$/application/sql_files/2018-12-14.sql" afterPath="$PROJECT_DIR$/application/sql_files/2018-12-14.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,58 +19,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sms_lang.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="429" column="20" lean-forward="false" selection-start-line="429" selection-start-column="7" selection-end-line="429" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Attendance.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="136" column="25" lean-forward="true" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
+            <state relative-caret-position="601">
+              <caret line="69" column="135" lean-forward="false" selection-start-line="69" selection-start-column="135" selection-end-line="69" selection-end-column="135" />
               <folding>
-                <marker date="1544823018232" expanded="true" signature="3049:3060" ph="..." />
+                <marker date="1544998434181" expanded="true" signature="3696:3707" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MY_Model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/core/MY_Model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="70" column="37" lean-forward="true" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-              <folding>
-                <marker date="1526035690000" expanded="true" signature="7833:8167" ph="SELECT P.* F... isl_modules" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="279">
+              <caret line="69" column="142" lean-forward="true" selection-start-line="69" selection-start-column="142" selection-end-line="69" selection-end-column="142" />
+              <folding>
+                <marker date="1545000308454" expanded="true" signature="9203:10454" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="9276:9377" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="9276:9424" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="9276:9524" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="9276:9628" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="9701:10045" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="10118:10238" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="10118:10382" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="10258:10303" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="10992:11137" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="11067:11137" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="11826:12071" ph="..." />
+                <marker date="1545000308454" expanded="true" signature="13709:13754" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Payment.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
+      <file leaf-file-name="sms_lang.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="167" column="20" lean-forward="false" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
-              <folding>
-                <marker date="1544826381187" expanded="true" signature="11979:11990" ph="..." />
-              </folding>
+            <state relative-caret-position="451">
+              <caret line="615" column="21" lean-forward="false" selection-start-line="615" selection-start-column="21" selection-end-line="615" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,13 +109,14 @@
         <option value="$PROJECT_DIR$/application/modules/academic/views/class/index.php" />
         <option value="$PROJECT_DIR$/application/modules/academic/controllers/Classes.php" />
         <option value="$PROJECT_DIR$/application/views/layout/left-side.php" />
-        <option value="$PROJECT_DIR$/application/language/english/sms_lang.php" />
         <option value="$PROJECT_DIR$/application/modules/payroll/views/payment/index.php" />
         <option value="$PROJECT_DIR$/application/modules/payroll/models/Attendance_Model.php" />
-        <option value="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" />
         <option value="$PROJECT_DIR$/application/sql_files/2018-12-14.sql" />
-        <option value="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" />
         <option value="$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php" />
+        <option value="$PROJECT_DIR$/../alg/index.php" />
+        <option value="$PROJECT_DIR$/application/language/english/sms_lang.php" />
+        <option value="$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php" />
+        <option value="$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php" />
       </list>
     </option>
   </component>
@@ -156,6 +149,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -173,49 +167,24 @@
               <item name="school" type="b2602c69:ProjectViewProjectNode" />
               <item name="school" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="school" type="b2602c69:ProjectViewProjectNode" />
               <item name="school" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="payroll" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="payroll" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="payroll" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="school" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modules" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="payroll" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="english" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../alg" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -249,12 +218,14 @@
       <workItem from="1543862591136" duration="4541000" />
       <workItem from="1544728686563" duration="445000" />
       <workItem from="1544799653311" duration="13734000" />
-      <workItem from="1544821537657" duration="4815000" />
+      <workItem from="1544821537657" duration="5412000" />
+      <workItem from="1544899058291" duration="3746000" />
+      <workItem from="1544995233195" duration="4145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27316000" />
+    <option name="totallyTimeSpent" value="35804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -291,6 +262,71 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../alg/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7293">
+          <caret line="429" column="20" lean-forward="false" selection-start-line="429" selection-start-column="7" selection-end-line="429" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2312">
+          <caret line="136" column="25" lean-forward="true" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
+          <folding>
+            <marker date="1544998434181" expanded="true" signature="3696:3707" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/core/MY_Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="70" column="37" lean-forward="true" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2227">
+          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding>
+            <marker date="1545000308454" expanded="true" signature="9203:10454" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9377" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9424" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9524" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9628" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9701:10045" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10118:10238" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10118:10382" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10258:10303" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10992:11137" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="11067:11137" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="11826:12071" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="13709:13754" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2839">
+          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding>
+            <marker date="1544827971282" expanded="true" signature="11959:11970" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7293">
@@ -303,7 +339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="42" column="46" lean-forward="false" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -312,7 +347,7 @@
         <state relative-caret-position="2210">
           <caret line="130" column="16" lean-forward="false" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="45" />
           <folding>
-            <marker date="1544826381187" expanded="true" signature="11979:11990" ph="..." />
+            <marker date="1544827971282" expanded="true" signature="11959:11970" ph="..." />
           </folding>
         </state>
       </provider>
@@ -321,7 +356,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1088">
           <caret line="64" column="171" lean-forward="false" selection-start-line="64" selection-start-column="171" selection-end-line="64" selection-end-column="171" />
-          <folding />
+          <folding>
+            <marker date="1545000308454" expanded="true" signature="9203:10454" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9377" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9424" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9524" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9628" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9701:10045" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10118:10238" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10118:10382" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10258:10303" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10992:11137" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="11067:11137" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="11826:12071" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="13709:13754" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -330,7 +379,7 @@
         <state relative-caret-position="1411">
           <caret line="83" column="36" lean-forward="false" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
           <folding>
-            <marker date="1544823018232" expanded="true" signature="3049:3060" ph="..." />
+            <marker date="1544998434181" expanded="true" signature="3696:3707" ph="..." />
           </folding>
         </state>
       </provider>
@@ -545,27 +594,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="429" column="20" lean-forward="false" selection-start-line="429" selection-start-column="7" selection-end-line="429" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/sql_files/2018-12-14.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -573,36 +605,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/core/MY_Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="70" column="37" lean-forward="true" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-          <folding>
-            <marker date="1526035690000" expanded="true" signature="7833:8167" ph="SELECT P.* F... isl_modules" />
-          </folding>
+        <state relative-caret-position="1190">
+          <caret line="70" column="37" lean-forward="false" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
+    <entry file="file://$PROJECT_DIR$/../alg/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="136" column="25" lean-forward="true" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
-          <folding>
-            <marker date="1544823018232" expanded="true" signature="3049:3060" ph="..." />
-          </folding>
+        <state relative-caret-position="550">
+          <caret line="54" column="22" lean-forward="false" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Payment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="167" column="20" lean-forward="false" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
+        <state relative-caret-position="330">
+          <caret line="164" column="16" lean-forward="true" selection-start-line="164" selection-start-column="16" selection-end-line="166" selection-end-column="45" />
           <folding>
-            <marker date="1544826381187" expanded="true" signature="11979:11990" ph="..." />
+            <marker date="1544827971282" expanded="true" signature="11959:11970" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/english/sms_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="615" column="21" lean-forward="false" selection-start-line="615" selection-start-column="21" selection-end-line="615" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/controllers/Attendance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="69" column="135" lean-forward="false" selection-start-line="69" selection-start-column="135" selection-end-line="69" selection-end-column="135" />
+          <folding>
+            <marker date="1544998434181" expanded="true" signature="3696:3707" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/payroll/views/attendance/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="69" column="142" lean-forward="true" selection-start-line="69" selection-start-column="142" selection-end-line="69" selection-end-column="142" />
+          <folding>
+            <marker date="1545000308454" expanded="true" signature="9203:10454" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9377" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9424" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9524" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9276:9628" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="9701:10045" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10118:10238" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10118:10382" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10258:10303" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="10992:11137" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="11067:11137" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="11826:12071" ph="..." />
+            <marker date="1545000308454" expanded="true" signature="13709:13754" ph="..." />
           </folding>
         </state>
       </provider>

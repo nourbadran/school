@@ -613,4 +613,5 @@ $lang['extra_days_off'] = "Extra Days Off";
 $lang['day_number'] = "Day Number";
 $lang['day_off'] = "Add day off";
 $lang['day'] = "Day";
+$lang['save'] = "Save";
 
